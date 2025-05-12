@@ -24,7 +24,11 @@ if (!$_SESSION['valide']) {
 include 'nav_bar.html';
 ?>
 <h1>Gestion d'actes administratifs</h1>
-<div class="flex-container-horizontal">
+<div class="flex-container-horizontal div-admin">
+    <div class="flex-item flex-container-vertical">
+        <h2>Gestion des listes</h2>
+        <button class="flex-item" onclick="window.location.href='choisir_groupe.php'">Choisir groupe</button>
+    </div>
     <div class="flex-item flex-container-vertical">
         <h2>Gestion des comptes</h2>
         <button class="flex-item" onclick="window.location.href='valider_compte.php'">Valider un compte</button>
