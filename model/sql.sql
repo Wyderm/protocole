@@ -5,6 +5,14 @@ DROP TABLE IF EXISTS utilisateur_groupe;
 DROP TABLE IF EXISTS utilisateur;
 DROP TABLE IF EXISTS groupe;
 
+-- Table groupe
+CREATE TABLE groupe
+(
+    id  INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom text
+);
+
+
 -- Table personne
 CREATE TABLE personne
 (
@@ -17,14 +25,9 @@ CREATE TABLE personne
     code_postal      INTEGER,
     ville            TEXT,
     tel              TEXT,
-    mail             TEXT
-);
-
--- Table groupe
-CREATE TABLE groupe
-(
-    id  INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom text
+    mail             TEXT,
+    id_groupe        INTEGER,
+    FOREIGN KEY (id_groupe) REFERENCES groupe (id)
 );
 
 -- Table utilisateur
@@ -69,3 +72,71 @@ CREATE TABLE personne_souscategories
     FOREIGN KEY (id_souscategories) REFERENCES souscategories (id)
 );
 
+-- Insertion utilisateurs
+INSERT INTO utilisateur (username, password, type, email, valide)
+VALUES ('admin', '$2y$12$2UorjzwjRVc/lstMS3cR.ex5wYIUKgWGHSqnU..3VBKNGooSwo/tC', 'admin', 'matheo.deghaye@gmail.com',
+        1),
+       ('user', '$2y$12$Hj0t8DKygXB.lJli/O8eSeIlcNHuHvJRa13ZVVrfNau8zYwAzc7Hq', 'user', 'matheo.deghaye@uphf.fr', 0);
+
+-- Insertion groupes
+INSERT INTO groupe (nom)
+VALUES ('ANCIENS_ELUS'),
+       ('ASSOCIATIONS'),
+       ('COMITE_CONSULTATIF_AFFAIRES_SCOLAIRES'),
+       ('COMITE_CONSULTATIF_CIRC_ET_DEPL'),
+       ('COMITE_CONSULTATIF_ENV_DURABLE'),
+       ('CONSEIL_JEUNES'),
+       ('CONSEIL_SENIORS'),
+       ('ECOLES'),
+       ('ELUS'),
+       ('ENGAGEMENT_CITOYEN'),
+       ('ENTREPRISES'),
+       ('ETAT'),
+       ('INV_PROTOCOLAIRE_ET_SOUTIEN'),
+       ('PARTENAIRES_INSTITUTIONNELS'),
+       ('PRESSE'),
+       ('PRESTATAIRES_VILLE'),
+       ('PROFESSIONS_LIBERALES'),
+       ('TRANQUILITE_PUBLIQUE'),
+       ('VIE_POLITIQUE');
+
+-- Insertion personnes
+INSERT INTO personne (denomination, dirigant_contact, categorie, adresse1, adresse2, code_postal, ville, tel, mail, id_groupe)
+VALUES ('Société A', 'Mathéo DEGHAYE', 'entreprise', '1 rue de la Paix', '', 59233, 'Maing', '0123456789', 'matheo.deghaye@gmail.com', 11),
+         ('', 'Sébastien DEGHAYE', 'ELU', '2 rue de la Liberté', '', 59233, 'Maing', '0987654321', 'matheo.deghaye@uphf.fr', 9);
+
+-- Insertion souscategories
+INSERT INTO souscategories (nom)
+VALUES ('travaux'),
+       ('élevage'),
+       ('assurances'),
+       ('conseiller municipal');
+
+-- Insertion personnes_souscategories
+INSERT INTO personne_souscategories (id_personne, id_souscategories)
+VALUES (1, 1),
+       (1, 2),
+       (2, 4);
+
+-- Insertion utilisateur_groupe
+INSERT INTO utilisateur_groupe (id_utilisateur, id_groupe)
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4),
+       (1, 5),
+       (1, 6),
+       (1, 7),
+       (1, 8),
+       (1, 9),
+       (1, 10),
+       (1, 11),
+       (1, 12),
+       (1, 13),
+       (1, 14),
+       (1, 15),
+       (1, 16),
+       (1, 17),
+       (1, 18),
+       (1, 19),
+       (2, 11);
