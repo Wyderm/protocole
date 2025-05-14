@@ -17,6 +17,9 @@ if (isset($_SESSION['valide']) && $_SESSION['valide'] && $_SESSION['type'] == 'u
     header("Location: ../view/hub_utilisateur.php");
     exit();
 }
+
+include '../model/get_all_groupes.php';
+$groupes = get_all_groupes();
 ?>
 <h1>Créer un compte</h1>
 <form method="post" action="../model/creer_compte_bdd.php">
@@ -37,6 +40,13 @@ if (isset($_SESSION['valide']) && $_SESSION['valide'] && $_SESSION['type'] == 'u
     <label for="email">Email :</label><br>
     <input type="email" id="email" name="email" required>
     <br><br>
+
+    <label for="groupes">Groupes à modifier :</label><br>
+    <select id="groupes" name="groupes[]" multiple required>
+        <?php foreach ($groupes as $groupe): ?>
+            <option value="<?= htmlspecialchars($groupe['id']) ?>"><?= htmlspecialchars($groupe['nom']) ?></option>
+        <?php endforeach; ?>
+    </select>
 
     <input type="submit" id="submit" value="Créer un compte">
 </form>

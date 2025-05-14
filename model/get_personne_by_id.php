@@ -25,8 +25,14 @@ $stmt->execute(array(
 ));
 $personne = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $db->prepare("SELECT nom FROM souscategories JOIN personne_souscategories ps on ps.id_souscategories = souscategories.id WHERE ps.id_personne = :id");
+$stmt = $db->prepare("SELECT nom FROM souscategories JOIN personne_souscategories ps on ps.id_souscategories = souscategories.id WHERE ps.id_personne = :id ORDER BY nom");
 $stmt->execute(array(
     'id' => $id
 ));
 $sous_categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$groupe = $db->prepare("SELECT * FROM groupe WHERE id = :id");
+$groupe->execute(array(
+    'id' => $personne['id_groupe']
+));
+$groupe = $groupe->fetch(PDO::FETCH_ASSOC);

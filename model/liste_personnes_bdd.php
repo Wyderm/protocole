@@ -15,6 +15,9 @@ $groupe = filter_input(0, 'groupe');
 $groupe = strip_tags($groupe);
 $groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 
+include 'gestion_permissions.php';
+redirect_groupe($groupe);
+
 include 'connexion_pdo.php';
 global $db;
 

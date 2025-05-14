@@ -24,6 +24,9 @@ if (!empty($_POST["username"])) {
     $confirm_password = filter_input(0, 'confirm_password');
     $confirm_password = strip_tags($confirm_password);
     $confirm_password = htmlspecialchars($confirm_password, ENT_QUOTES, 'UTF-8');
+    $groupes = filter_input(0, 'groupes', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+    $groupes = array_map('strip_tags', $groupes);
+    $groupes = array_map('htmlspecialchars', $groupes);
 
     if (strlen($password) < 15 || !preg_match('/[A-Z]/', $password) || !preg_match('/[a-z]/', $password) || !preg_match('/\d/', $password) || !preg_match('/[^A-Za-z0-9]/', $password)) {
         header("Location: ../view/erreur_mdp.html");
@@ -52,6 +55,8 @@ if (!empty($_POST["username"])) {
         exit();
     }
 
+
+
     // Insérer les éléments
     $inserer_compte = $db->prepare("INSERT INTO utilisateur (username, password, email, account_activation_hash) VALUES (:username, :password, :email, :account_activation_hash)");
     $inserer_compte->execute(array(
@@ -60,6 +65,16 @@ if (!empty($_POST["username"])) {
         "email" => $email,
         "account_activation_hash" => $activation_token_hash
     ));
+
+    $id_compte = $db->lastInsertId();
+
+    foreach ($groupes as $groupe) {
+        $stmt = $db->prepare("INSERT INTO utilisateur_groupe (id_utilisateur, id_groupe) VALUES (:id_utilisateur, :id_groupe)");
+        $stmt->execute(array(
+            "id_utilisateur" => $id_compte,
+            "id_groupe" => $groupe
+        ));
+    }
 
     $stmt = $db->prepare("SELECT id_compte FROM utilisateur WHERE username = :username");
     $stmt->execute(array(

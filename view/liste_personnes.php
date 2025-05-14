@@ -19,11 +19,17 @@ if (!$_SESSION['valide']) {
 <?php
 include 'nav_bar.html';
 include '../model/liste_personnes_bdd.php';
-global $personnes;
+global $personnes, $groupe;
 ?>
 <body>
 <h1>Liste des personnes</h1>
-<table class="liste-personnes">
+
+<div class="flex-container-horizontal not-bordered">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Cherchez parmi les noms">
+    <button onclick="window.location.href='ajouter_personne.php?groupe=<?php echo $groupe ?>'">Ajouter personne</button>
+</div>
+
+<table class="liste-personnes" id="tableau">
     <tr>
         <th>DENOMINATION</th>
         <th>DIRIGANT/CONTACT</th>
@@ -39,9 +45,9 @@ global $personnes;
     </tr>
     <?php foreach ($personnes as $personne): ?>
         <tr>
-            <td><?php echo htmlspecialchars($personne['denomination']); ?></td>
-            <td><?php echo htmlspecialchars($personne['dirigant_contact']); ?></td>
-            <td><?php echo htmlspecialchars($personne['categorie']); ?></td>
+            <td><?php echo $personne['denomination']; ?></td>
+            <td><?php echo $personne['dirigant_contact']; ?></td>
+            <td><?php echo $personne['categorie']; ?></td>
             <td>
                 <?php
                 $id = $personne['id'];
@@ -51,15 +57,17 @@ global $personnes;
                 }
                 ?>
             </td>
-            <td><?php echo htmlspecialchars($personne['adresse1']); ?></td>
-            <td><?php echo htmlspecialchars($personne['adresse2']); ?></td>
-            <td><?php echo htmlspecialchars($personne['code_postal']); ?></td>
-            <td><?php echo htmlspecialchars($personne['ville']); ?></td>
-            <td><?php echo htmlspecialchars($personne['tel']); ?></td>
-            <td><?php echo htmlspecialchars($personne['mail']); ?></td>
+            <td><?php echo $personne['adresse1']; ?></td>
+            <td><?php echo $personne['adresse2']; ?></td>
+            <td><?php echo $personne['code_postal']; ?></td>
+            <td><?php echo $personne['ville']; ?></td>
+            <td><?php echo $personne['tel']; ?></td>
+            <td><?php echo $personne['mail']; ?></td>
             <td><button onclick="window.location.href='modifier_personne.php?id=<?php echo $id; ?>'">Modifier</button></td>
         </tr>
     <?php endforeach; ?>
 </table>
+
+<script src="../controller/recherche_nom.js"></script>
 </body>
 </html>

@@ -20,6 +20,7 @@ $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
 $souscategorie = filter_input(INPUT_POST, 'sous_categorie');
 $souscategorie = strip_tags($souscategorie);
 $souscategorie = htmlspecialchars($souscategorie, ENT_QUOTES, 'UTF-8');
+$souscategorie = trim($souscategorie);
 
 $stmt = $db->prepare("SELECT * FROM souscategories WHERE nom = :souscategorie");
 $stmt->execute(array(

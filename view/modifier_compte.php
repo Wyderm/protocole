@@ -43,7 +43,8 @@ $type = $infos['type'];
     <input type="submit" value="Modifier le compte">
 </form>
 <div id="response-container" style="display: none"></div>
-<div class="flex-container-horizontal not-bordered" style="">
+<div class="flex-container-horizontal not-bordered">
+    <button style="margin-top: 0" onclick="window.location.href='gerer_groupes.php?id=<?php echo $id_utilisateur ?>'">Groupes modifiables</button>
     <button style="margin-top: 0" id="refuser" onclick="window.location.href='supprimer_compte_existant.php?id=<?php echo $id_utilisateur; ?>'">Supprimer le compte</button>
 </div>
 

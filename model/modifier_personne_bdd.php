@@ -19,6 +19,9 @@ $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 $id = strip_tags($id);
 $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
 
+include '../model/gestion_permissions.php';
+redirect_personne($id);
+
 if (!empty($_POST['denomination'])) {
     $denomination = filter_input(INPUT_POST, 'denomination');
     $denomination = strip_tags($denomination);

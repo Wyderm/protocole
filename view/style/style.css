@@ -237,13 +237,11 @@ select#annees {
 }
 
 .border-vertical {
-    border-top: 1px black solid;
-    border-bottom: 1px black solid;
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-    margin: 0;
-    background-color: white;
+    margin: 0 50px;
+    border-radius: 10px;
+    border: #919191 5px solid;
+    padding: 20px;
+    background-color: #D3D3D3;
     justify-content: space-around;
 }
 

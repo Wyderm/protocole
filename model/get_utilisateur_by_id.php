@@ -12,7 +12,7 @@ if ($_SESSION['valide'] !== true) {
     header("Location: ../view/hub_admin.php");
     exit();
 } elseif (empty($_GET['id'])) {
-    header("Location: ../view/valider_compte.php");
+    header("Location: ../view/hub_admin.php");
     exit();
 }
 

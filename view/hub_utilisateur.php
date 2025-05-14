@@ -7,6 +7,10 @@ if (!$_SESSION['valide']) {
     header("Location: ../view/connexion.php");
     exit();
 }
+if ($_SESSION['type'] == 'admin') {
+    header("Location: ../view/hub_admin.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,10 +24,12 @@ if (!$_SESSION['valide']) {
 <?php
 include 'nav_bar.html';
 ?>
-<h1>Protocole</h1>
-<div class="flex-container-horizontal">
-    <div class="flex-item flex-container-vertical">
-        <h2></h2>
+<h1>Gestion protocole</h1>
+<div class="flex-container-vertical border-vertical">
+    <h2>Gestion des listes</h2>
+    <div class="flex-container-horizontal not-bordered" style="background-color: inherit; width: 80%;">
+        <button class="flex-item" onclick="window.location.href='choisir_groupe.php'">Choisir groupe</button>
+        <button class="flex-item">Publipostage</button>
     </div>
 </div>
 </body>
