@@ -64,7 +64,7 @@ h1 {
     color: #028480;
 }
 
-button, input[type="submit"] {
+button, input[type="submit"], input[type="file"]::file-selector-button {
     cursor: pointer;
     margin-top: 20px;
     background-color: #3ac1b8;
@@ -94,7 +94,7 @@ input[type="submit"] {
     padding: 6px 16px;
 }
 
-button:hover, input[type="submit"]:hover {
+button:hover, input[type="submit"]:hover, input[type="file"]::file-selector-button:hover {
     background-color: #028480;
     color: white;
 }

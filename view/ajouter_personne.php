@@ -66,5 +66,5 @@ redirect_groupe($groupe);
 
     <label for="mail">Mail :</label>
     <input type="email" id="mail" name="mail" placeholder="E-mail">
-    <input type="submit" value="Modifier">
+    <input type="submit" value="Ajouter">
 </form>

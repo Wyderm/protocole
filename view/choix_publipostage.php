@@ -26,8 +26,8 @@ include 'nav_bar.html';
 ?>
 <h1>Choix publipostage</h1>
 </body>
-<div class="flex-container-horizontal">
+<div class="flex-container-horizontal" style="justify-content: space-around">
     <button onclick="window.location.href='publipostage.php?type=etiquette'">Etiquette</button>
-    <button onclick="window.location.href='publipostage_courrier.php?type=courrier'">Courrier</button>
+    <button onclick="window.location.href='publipostage.php?type=courrier'">Courrier</button>
 </div>
 </html>

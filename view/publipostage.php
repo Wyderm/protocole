@@ -24,11 +24,34 @@ $groupes = get_groupes_utilisateur($id);
 
 <?php
 include 'nav_bar.html';
+
+$type = filter_input(INPUT_GET, 'type');
+$type = strip_tags($type);
+$type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8');
+
+if (empty($type)) {
+    header('Location: choix_publipostage.php');
+    exit();
+}
+
+if ($type == 'etiquette') {
+    echo '<h1>Publipostage Etiquette</h1>';
+} elseif ($type == 'courrier') {
+    echo '<h1>Publipostage Courrier</h1>';
+} else {
+    header('Location: choix_publipostage.php');
+    exit();
+}
+
+
+if ($type == 'etiquette') {
+    echo '<form action="../model/publipostage_etiquette_bdd.php" method="post" enctype="multipart/form-data">';
+} else {
+    echo '<form action="../model/publipostage_courrier_bdd.php" method="post" enctype="multipart/form-data">';
+}
 ?>
-<h1>Publipostage</h1>
-<form action="../model/publipostage_bdd.php" method="post" enctype="multipart/form-data">
-    <label for="file">Sélectionnez un fichier .docx :</label>
-    <input type="file" id="file" name="file" accept=".docx" required>
+    <label for="file">Sélectionnez un fichier Word :</label>
+    <input type="file" id="file" name="file" accept=".docx, .odt" required>
 
     <label for="groupe">Sélectionnez un groupe :</label>
     <select id="groupe" name="groupe" required>
@@ -40,3 +63,5 @@ include 'nav_bar.html';
     </select>
     <input type="submit" value="Générer">
 </form>
+</body>
+</html>

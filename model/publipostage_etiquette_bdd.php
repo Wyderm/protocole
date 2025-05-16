@@ -12,69 +12,52 @@ if (!$_SESSION['valide']) {
     exit();
 }
 
+include 'lire_fichier.php';
 include 'connexion_pdo.php';
 global $db;
 
 if (empty($_POST['groupe']) || !isset($_FILES['file'])) {
-    header("Location: ../view/publipostage.php");
+    header("Location: ../view/choix_publipostage.php");
     exit();
 }
 
 $id_groupe = filter_input(INPUT_POST, 'groupe', FILTER_SANITIZE_NUMBER_INT);
 $id_groupe = htmlspecialchars($id_groupe, ENT_QUOTES, 'UTF-8');
 
+$stmt = $db->prepare("SELECT nom FROM groupe WHERE id = :id");
+$stmt->execute([':id' => $id_groupe]);
+$groupe = $stmt->fetch(PDO::FETCH_ASSOC);
+
+include 'gestion_permissions.php';
+redirect_groupe($groupe['nom']);
+
 $stmt = $db->prepare("SELECT id FROM personne WHERE id_groupe = :id_groupe");
 $stmt->execute([':id_groupe' => $id_groupe]);
 $personnes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $file = $_FILES['file']['tmp_name'];
+$originalName = $_FILES['file']['name'];
 
-// Fonction pour extraire le texte d'un fichier .docx
-function extractDocxText($filePath): string
-{
-    $phpWord = IOFactory::load($filePath);
-    $text = '';
-    foreach ($phpWord->getSections() as $section) {
-        foreach ($section->getElements() as $element) {
-            if (method_exists($element, 'getText')) {
-                $text .= $element->getText() . "\n"; // Ajout d'un retour à la ligne
-            } elseif (method_exists($element, 'getElements')) {
-                foreach ($element->getElements() as $childElement) {
-                    if (method_exists($childElement, 'getText')) {
-                        $text .= $childElement->getText() . "\n"; // Gestion des sous-éléments
-                    }
-                }
-            }
-        }
-    }
-    return $text;
+
+
+if (pathinfo($originalName, PATHINFO_EXTENSION) === 'docx') {
+    $contentTemplate = extractDocxText($file);
+} elseif (pathinfo($originalName, PATHINFO_EXTENSION) === 'odt') {
+    $contentTemplate = extractOdtText($file);
+} else {
+    echo "Format de fichier non pris en charge.";
+    exit();
 }
 
-$contentTemplate = extractDocxText($file);
 
 $phpWord = new PhpWord();
+$phpWord->setDefaultFontSize(11);
+
 $section = $phpWord->addSection();
 
-function cleanInput($input): string
-{
-    if (!is_string($input)) {
-        return '';
-    }
-    // Supprime les caractères de contrôle ASCII sauf les retours à la ligne (\n)
-    return preg_replace('/[\x00-\x09\x0B-\x1F\x7F]/u', '', $input) ?? '';
-}
 
 $table = $section->addTable(['width' => 100 * 50, 'unit' => 'pct', 'alignment' => 'center']);
 
-function addTextWithLineBreaks($cell, $text): void
-{
-    $textRun = $cell->addTextRun(); // Crée un TextRun pour gérer plusieurs lignes
-    $lines = explode("\n", $text); // Divise le texte en lignes
-    foreach ($lines as $line) {
-        $textRun->addText(htmlspecialchars($line)); // Ajoute chaque ligne
-        $textRun->addTextBreak(); // Ajoute un saut de ligne après chaque ligne
-    }
-}
 
 for ($i = 0; $i < count($personnes); $i += 2) {
     $table->addRow();

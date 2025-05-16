@@ -157,5 +157,4 @@ foreach ($sous_categories as $sous_categorie) {
     }
 }
 
-
-header("Location: ../view/hub_admin.php");
+header("Location: ../view/liste_personnes.php");
