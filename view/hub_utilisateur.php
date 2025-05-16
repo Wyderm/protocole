@@ -29,7 +29,7 @@ include 'nav_bar.html';
     <h2>Gestion des listes</h2>
     <div class="flex-container-horizontal not-bordered" style="background-color: inherit; width: 80%;">
         <button class="flex-item" onclick="window.location.href='choisir_groupe.php'">Choisir groupe</button>
-        <button class="flex-item">Publipostage</button>
+        <button class="flex-item" onclick="window.location.href='publipostage.php'">Publipostage</button>
     </div>
 </div>
 </body>
