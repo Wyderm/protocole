@@ -19,6 +19,11 @@ if (empty($_GET['id'])) {
 
 include '../model/gestion_permissions.php';
 redirect_personne($id);
+$ecriture = ecriture_permissions($_SESSION['id']);
+if (!$ecriture) {
+    header("Location: ../view/hub_utilisateur.php");
+    exit();
+}
 
 include 'connexion_pdo.php';
 global $db;

@@ -27,6 +27,11 @@ $id_personne = htmlspecialchars($id_personne, ENT_QUOTES, 'UTF-8');
 
 include '../model/gestion_permissions.php';
 redirect_personne($id_personne);
+$ecriture = ecriture_permissions($_SESSION['id']);
+if (!$ecriture) {
+    header("Location: ../view/hub_utilisateur.php");
+    exit();
+}
 ?>
 <body>
 <h1>Modifier une personne</h1>

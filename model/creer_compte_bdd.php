@@ -4,7 +4,7 @@ global $db;
 if (!isset($_SESSION)) {
     session_start();
 }
-if ($_SESSION['valide'] && $_SESSION['type'] == 'user') {
+if ($_SESSION['valide'] && $_SESSION['type'] != 'admin') {
     header("Location: ../view/hub_utilisateur.php");
     exit();
 }

@@ -62,3 +62,19 @@ function redirect_personne($id_personne): void
         exit();
     }
 }
+
+function ecriture_permissions($id_compte): bool
+{
+    global $db;
+
+    $stmt = $db->prepare("SELECT type FROM utilisateur WHERE id_compte = :id");
+    $stmt->execute(array(
+        'id' => $id_compte
+    ));
+    $type = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($type['type'] != 'admin' && $type['type'] != 'user') {
+        return false;
+    }
+    return true;
+}

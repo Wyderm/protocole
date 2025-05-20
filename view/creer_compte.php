@@ -13,7 +13,7 @@ if (!isset($_SESSION)) {
 if (isset($_SESSION['type']) && $_SESSION['type'] == 'admin') {
     include 'nav_bar.html';
 }
-if (isset($_SESSION['valide']) && $_SESSION['valide'] && $_SESSION['type'] == 'user') {
+if (isset($_SESSION['valide']) && $_SESSION['valide'] && $_SESSION['type'] != 'admin') {
     header("Location: ../view/hub_utilisateur.php");
     exit();
 }

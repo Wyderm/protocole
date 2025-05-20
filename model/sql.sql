@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS personne_souscategories;
-DROP TABLE IF EXISTS souscategories;
 DROP TABLE IF EXISTS personne;
 DROP TABLE IF EXISTS utilisateur_groupe;
 DROP TABLE IF EXISTS utilisateur;
@@ -19,7 +17,8 @@ CREATE TABLE personne
     id               INTEGER PRIMARY KEY AUTOINCREMENT,
     denomination     TEXT,
     dirigant_contact TEXT,
-    categorie        TEXT,
+    categories        TEXT,
+    sous_categories    TEXT,
     adresse1         TEXT,
     adresse2         TEXT,
     code_postal      INTEGER,
@@ -30,13 +29,14 @@ CREATE TABLE personne
     FOREIGN KEY (id_groupe) REFERENCES groupe (id)
 );
 
+
 -- Table utilisateur
 CREATE TABLE utilisateur
 (
     id_compte               INTEGER PRIMARY KEY AUTOINCREMENT,
     username                TEXT NOT NULL UNIQUE,
     password                TEXT NOT NULL,
-    type                    TEXT NOT NULL DEFAULT 'user' CHECK (type IN ('admin', 'user')),
+    type                    TEXT NOT NULL DEFAULT 'user' CHECK (type IN ('admin', 'user', 'lecteur')),
     email                   TEXT NOT NULL,
     valide                  BOOLEAN       DEFAULT false,
     reset_token_hash        TEXT UNIQUE   DEFAULT NULL,
@@ -44,6 +44,7 @@ CREATE TABLE utilisateur
     account_activation_hash varchar(64)   DEFAULT NULL,
     supprime                BOOLEAN       DEFAULT false
 );
+
 
 -- Table utilisateur_groupe
 CREATE TABLE utilisateur_groupe
@@ -55,28 +56,13 @@ CREATE TABLE utilisateur_groupe
     FOREIGN KEY (id_groupe) REFERENCES groupe (id)
 );
 
--- Table souscategories
-CREATE TABLE souscategories
-(
-    id  INTEGER PRIMARY KEY AUTOINCREMENT,
-    nom text
-);
-
--- Table personne_souscategories
-CREATE TABLE personne_souscategories
-(
-    id_personne       INTEGER NOT NULL,
-    id_souscategories INTEGER NOT NULL,
-    PRIMARY KEY (id_personne, id_souscategories),
-    FOREIGN KEY (id_personne) REFERENCES personne (id),
-    FOREIGN KEY (id_souscategories) REFERENCES souscategories (id)
-);
 
 -- Insertion utilisateurs
 INSERT INTO utilisateur (username, password, type, email, valide)
 VALUES ('admin', '$2y$12$2UorjzwjRVc/lstMS3cR.ex5wYIUKgWGHSqnU..3VBKNGooSwo/tC', 'admin', 'matheo.deghaye@gmail.com',
         1),
        ('user', '$2y$12$Hj0t8DKygXB.lJli/O8eSeIlcNHuHvJRa13ZVVrfNau8zYwAzc7Hq', 'user', 'matheo.deghaye@uphf.fr', 0);
+
 
 -- Insertion groupes
 INSERT INTO groupe (nom)
@@ -100,23 +86,15 @@ VALUES ('ANCIENS_ELUS'),
        ('TRANQUILITE_PUBLIQUE'),
        ('VIE_POLITIQUE');
 
+
 -- Insertion personnes
-INSERT INTO personne (denomination, dirigant_contact, categorie, adresse1, adresse2, code_postal, ville, tel, mail, id_groupe)
-VALUES ('Société A', 'Mathéo DEGHAYE', 'entreprise', '1 rue de la Paix', '', 59233, 'Maing', '0123456789', 'matheo.deghaye@gmail.com', 11),
-         ('', 'Sébastien DEGHAYE', 'ELU', '2 rue de la Liberté', '', 59233, 'Maing', '0987654321', 'matheo.deghaye@uphf.fr', 9);
+INSERT INTO personne (denomination, dirigant_contact, categorie, adresse1, adresse2, code_postal, ville, tel, mail,
+                      id_groupe)
+VALUES ('Société A', 'Mathéo DEGHAYE', 'entreprise', '1 rue de la Paix', '', 59233, 'Maing', '0123456789',
+        'matheo.deghaye@gmail.com', 11),
+       ('', 'Sébastien DEGHAYE', 'ELU', '2 rue de la Liberté', '', 59233, 'Maing', '0987654321',
+        'matheo.deghaye@uphf.fr', 9);
 
--- Insertion souscategories
-INSERT INTO souscategories (nom)
-VALUES ('travaux'),
-       ('élevage'),
-       ('assurances'),
-       ('conseiller municipal');
-
--- Insertion personnes_souscategories
-INSERT INTO personne_souscategories (id_personne, id_souscategories)
-VALUES (1, 1),
-       (1, 2),
-       (2, 4);
 
 -- Insertion utilisateur_groupe
 INSERT INTO utilisateur_groupe (id_utilisateur, id_groupe)

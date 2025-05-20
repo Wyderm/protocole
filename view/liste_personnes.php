@@ -20,13 +20,17 @@ if (!$_SESSION['valide']) {
 include 'nav_bar.html';
 include '../model/liste_personnes_bdd.php';
 global $personnes, $groupe;
+
+$ecriture = ecriture_permissions($_SESSION['id']);
 ?>
 <body>
 <h1>Liste des personnes</h1>
 
 <div class="flex-container-horizontal not-bordered">
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Cherchez parmi les noms">
+    <?php if ($ecriture): ?>
     <button onclick="window.location.href='ajouter_personne.php?groupe=<?php echo $groupe ?>'">Ajouter personne</button>
+    <?php endif; ?>
 </div>
 
 <table class="liste-personnes" id="tableau">
@@ -41,7 +45,9 @@ global $personnes, $groupe;
         <th>VILLE</th>
         <th>N° TEL</th>
         <th>MAIL</th>
+        <?php if ($ecriture): ?>
         <th>Modifier</th>
+        <?php endif; ?>
     </tr>
     <?php foreach ($personnes as $personne): ?>
         <tr>
@@ -63,7 +69,9 @@ global $personnes, $groupe;
             <td><?php echo $personne['ville']; ?></td>
             <td><?php echo $personne['tel']; ?></td>
             <td><?php echo $personne['mail']; ?></td>
+            <?php if ($ecriture): ?>
             <td><button onclick="window.location.href='modifier_personne.php?id=<?php echo $id; ?>'">Modifier</button></td>
+            <?php endif; ?>
         </tr>
     <?php endforeach; ?>
 </table>

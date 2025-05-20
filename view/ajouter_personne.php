@@ -30,6 +30,11 @@ $groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 
 include '../model/gestion_permissions.php';
 redirect_groupe($groupe);
+$ecriture = ecriture_permissions($_SESSION['id']);
+if (!$ecriture) {
+    header("Location: ../view/hub_utilisateur.php");
+    exit();
+}
 ?>
 <body>
 <h1>Ajouter une personne au groupe <?php echo $groupe ?></h1>
@@ -47,7 +52,6 @@ redirect_groupe($groupe);
 
     <label for="sous_categories">Sous-catégories :</label>
     <input type="text" id="sous_categories" name="sous_categories" placeholder="Sous-catégories">
-    <p>Vous pouvez entrer plusieurs valeurs séparées par une virgule</p>
 
     <label for="adresse1">Adresse 1 :</label>
     <input type="text" id="adresse1" name="adresse1" placeholder="Adresse 1">

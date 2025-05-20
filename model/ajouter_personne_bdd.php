@@ -18,6 +18,11 @@ else {
 
 include '../model/gestion_permissions.php';
 redirect_groupe($groupe);
+$ecriture = ecriture_permissions($_SESSION['id']);
+if (!$ecriture) {
+    header("Location: ../view/hub_utilisateur.php");
+    exit();
+}
 
 if (!empty($_POST['denomination'])) {
     $denomination = filter_input(0, 'denomination');
@@ -36,20 +41,19 @@ if (!empty($_POST['dirigant_contact'])) {
 }
 
 if (!empty($_POST['categorie'])) {
-    $categorie = filter_input(0, 'categorie');
-    $categorie = strip_tags($categorie);
-    $categorie = htmlspecialchars($categorie, ENT_QUOTES, 'UTF-8');
+    $categories = filter_input(0, 'categorie');
+    $categories = strip_tags($categories);
+    $categories = htmlspecialchars($categories, ENT_QUOTES, 'UTF-8');
 } else {
-    $categorie = '';
+    $categories = '';
 }
 
 if (!empty($_POST['sous_categories'])) {
     $sous_categories = filter_input(0, 'sous_categories');
     $sous_categories = strip_tags($sous_categories);
     $sous_categories = htmlspecialchars($sous_categories, ENT_QUOTES, 'UTF-8');
-    $sous_categories = explode(',', $sous_categories);
 } else {
-    $sous_categories = [];
+    $sous_categories = '';
 }
 
 if (!empty($_POST['adresse1'])) {
@@ -110,10 +114,12 @@ $id_groupe->execute(array(
 $id_groupe = $id_groupe->fetch(PDO::FETCH_ASSOC);
 
 
-$stmt = $db->prepare("INSERT INTO personne (denomination, dirigant_contact, adresse1, adresse2, code_postal, ville, tel, mail, id_groupe) VALUES (:denomination, :dirigant_contact, :adresse1, :adresse2, :code_postal, :ville, :tel, :mail, :id_groupe)");
+$stmt = $db->prepare("INSERT INTO personne (denomination, dirigant_contact, categories, sous_categories, adresse1, adresse2, code_postal, ville, tel, mail, id_groupe) VALUES (:denomination, :dirigant_contact, :adresse1, :adresse2, :code_postal, :ville, :tel, :mail, :id_groupe)");
 $stmt->execute(array(
     'denomination' => $denomination,
     'dirigant_contact' => $dirigant_contact,
+    'categories' => $categories,
+    'sous_categories' => $sous_categories,
     'adresse1' => $adresse1,
     'adresse2' => $adresse2,
     'code_postal' => $code_postal,
@@ -125,36 +131,5 @@ $stmt->execute(array(
 $id_personne = $db->lastInsertId();
 
 
-
-$stmt = $db->prepare("INSERT INTO personne_souscategories (id_personne, id_souscategories) VALUES (:id_personne, :id_souscategories)");
-foreach ($sous_categories as $sous_categorie) {
-    $sous_categorie = trim($sous_categorie);
-    $stmt = $db->prepare("SELECT * FROM souscategories WHERE nom = :souscategorie");
-    $stmt->execute(array(
-        'souscategorie' => $sous_categorie
-    ));
-    $souscategorie_id = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-    if (!$souscategorie_id) {
-        $stmt = $db->prepare("INSERT INTO souscategories (nom) VALUES (:souscategorie)");
-        $stmt->execute(array(
-            'souscategorie' => $sous_categorie
-        ));
-        $souscategorie_id = $db->lastInsertId();
-        $stmt = $db->prepare("INSERT INTO personne_souscategories (id_personne, id_souscategories) VALUES (:id, :souscategorie_id)");
-        $stmt->execute(array(
-            'id' => $id_personne,
-            'souscategorie_id' => $souscategorie_id
-        ));
-    }
-    else {
-        $stmt = $db->prepare("INSERT INTO personne_souscategories (id_personne, id_souscategories) VALUES (:id, :souscategorie_id)");
-        $stmt->execute(array(
-            'id' => $id_personne,
-            'souscategorie_id' => $souscategorie_id['id']
-        ));
-    }
-}
 
 header("Location: ../view/liste_personnes.php");

@@ -21,6 +21,11 @@ $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
 
 include '../model/gestion_permissions.php';
 redirect_personne($id);
+$ecriture = ecriture_permissions($_SESSION['id']);
+if (!$ecriture) {
+    header("Location: ../view/hub_utilisateur.php");
+    exit();
+}
 
 if (!empty($_POST['denomination'])) {
     $denomination = filter_input(INPUT_POST, 'denomination');
