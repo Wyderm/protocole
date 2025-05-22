@@ -24,16 +24,19 @@ if (empty($_POST['groupe']) || !isset($_FILES['file'])) {
 $id_groupe = filter_input(INPUT_POST, 'groupe', FILTER_SANITIZE_NUMBER_INT);
 $id_groupe = htmlspecialchars($id_groupe, ENT_QUOTES, 'UTF-8');
 
-$stmt = $db->prepare("SELECT nom FROM groupe WHERE id = :id");
-$stmt->execute([':id' => $id_groupe]);
-$groupe = $stmt->fetch(PDO::FETCH_ASSOC);
+$groupe = filter_input(INPUT_POST, 'groupe');
+$groupe = strip_tags($groupe);
+$groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 
 include 'gestion_permissions.php';
-redirect_groupe($groupe['nom']);
+redirect_groupe($groupe);
 
-$stmt = $db->prepare("SELECT id FROM personne WHERE id_groupe = :id_groupe");
-$stmt->execute([':id_groupe' => $id_groupe]);
-$personnes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if (isset($_POST['personnes']) && is_array($_POST['personnes'])) {
+    $personnes = filter_var_array($_POST['personnes'], FILTER_SANITIZE_NUMBER_INT);
+} else {
+    $personnes = [];
+}
 
 $file = $_FILES['file']['tmp_name'];
 $originalName = $_FILES['file']['name'];
@@ -53,18 +56,40 @@ if (pathinfo($originalName, PATHINFO_EXTENSION) === 'docx') {
 $phpWord = new PhpWord();
 $phpWord->setDefaultFontSize(11);
 
-$section = $phpWord->addSection();
+$paragraph_style = [
+    'spaceBefore' => 5.6 * 20,  // Espacement avant
+    'spaceAfter' => 0,   // Espacement après
+    'indentation' => [
+        'left' => 0.25 * 566.9291,     // Retrait à gauche (720 twips = 0.5 pouce)
+        'right' => 0.25 * 566.9291,    // Retrait à droite (360 twips = 0.25 pouce)
+    ],
+    'keepNext' => true,
+    'valign' => 'top'
+];
+
+$section = $phpWord->addSection([
+    'marginTop' => 1.5 * 566.9291,    // 1,5 cm
+    'marginBottom' => 0.5 * 566.9291, // 0,5 cm
+    'marginLeft' => 0.5 * 566.9291, // 0,5 cm
+    'marginRight' => 0
+]);
 
 
-$stmt = $db->prepare("SELECT * FROM personne WHERE id_groupe = :id_groupe");
-$stmt->execute([':id_groupe' => $id_groupe]);
-$personnes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+$stmt = $db->prepare("SELECT * FROM personne WHERE id = :id");
 foreach ($personnes as $personne) {
+    $stmt->execute([':id' => $personne]);
+    $personneData = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($personneData) {
+        $lespersonnes[] = $personneData;
+    }
+}
+
+foreach ($lespersonnes as $personne) {
     $content = $contentTemplate;
     $content = str_replace('[denomination]', $personne['denomination'] ?? '', $content);
     $content = str_replace('[dirigant_contact]', $personne['dirigant_contact'] ?? '', $content);
-    $content = str_replace('[categorie]', $personne['categorie'] ?? '', $content);
+    $content = str_replace('[categorie]', $personne['categories'] ?? '', $content);
+    $content = str_replace('[sous_categorie]', $personne['sous_categories'] ?? '', $content);
     $content = str_replace('[adresse1]', $personne['adresse1'] ?? '', $content);
     $content = str_replace('[adresse2]', $personne['adresse2'] ?? '', $content);
     $content = str_replace('[code_postal]', $personne['code_postal'] ?? '', $content);
@@ -73,11 +98,12 @@ foreach ($personnes as $personne) {
     $content = str_replace('[mail]', $personne['mail'] ?? '', $content);
 
     $content = cleanInput($content);
-    addTextWithLineBreaks($section, $content);
+    $content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
+    addTextWithLineBreaks($section, $content, $paragraph_style);
 }
 
 header("Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-header("Content-Disposition: attachment; filename=\"nouv_fichier.docx\"");
+header("Content-Disposition: attachment; filename=\"$groupe.docx\"");
 header("Cache-Control: max-age=0");
 
 ob_start();

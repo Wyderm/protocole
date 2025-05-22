@@ -25,7 +25,7 @@ function redirect_groupe($groupe): void
     $groupes = $stmt->fetchAll(PDO::FETCH_COLUMN); // Récupère uniquement les noms des groupes
 
     if (!in_array($groupe, $groupes)) {
-        header("Location: ../view/choisir_groupe.php");
+        header("Location: ../view/hub_admin.php");
         exit();
     }
 }
@@ -58,7 +58,7 @@ function redirect_personne($id_personne): void
     $id_groupe = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$id_groupe) {
-        header("Location: ../view/choisir_groupe.php");
+        header("Location: ../view/hub_admin.php");
         exit();
     }
 }

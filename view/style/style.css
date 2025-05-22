@@ -384,9 +384,13 @@ select#annees {
     justify-content: space-around;
 }
 
-.liste-personnes {
-    table-layout: auto;
+.table-container {
+    overflow-x: auto;
     width: 100%;
+    transform: rotateX(180deg);
+    border: 2px solid lightgray;
+    max-height: 500px;
+    overflow-y: scroll;
 }
 
 .button {
@@ -397,4 +401,15 @@ select#annees {
     text-align: center;
     box-sizing: border-box;
     padding: 6px 16px;
+}
+
+table {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+    transform: rotateX(180deg);
+}
+
+td {
+    border: 1px solid lightgray;
 }

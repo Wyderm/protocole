@@ -44,23 +44,17 @@ if ($type == 'etiquette') {
 }
 
 
-if ($type == 'etiquette') {
-    echo '<form action="../model/publipostage_etiquette_bdd.php" method="post" enctype="multipart/form-data">';
-} else {
-    echo '<form action="../model/publipostage_courrier_bdd.php" method="post" enctype="multipart/form-data">';
-}
 ?>
-    <label for="file">Sélectionnez un fichier Word :</label>
-    <input type="file" id="file" name="file" accept=".docx, .odt" required>
-
+<form action="liste_publipostage.php" method="post">
     <label for="groupe">Sélectionnez un groupe :</label>
     <select id="groupe" name="groupe" required>
         <?php foreach ($groupes as $groupe): ?>
-            <option value="<?php echo htmlspecialchars($groupe['id'], ENT_QUOTES, 'UTF-8'); ?>">
+            <option value="<?php echo htmlspecialchars($groupe['nom'], ENT_QUOTES, 'UTF-8'); ?>">
                 <?php echo htmlspecialchars($groupe['nom'], ENT_QUOTES, 'UTF-8'); ?>
             </option>
         <?php endforeach; ?>
     </select>
+    <input type="hidden" name="type" value="<?php echo htmlspecialchars($type, ENT_QUOTES, 'UTF-8'); ?>">
     <input type="submit" value="Générer">
 </form>
 </body>

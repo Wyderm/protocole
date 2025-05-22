@@ -56,9 +56,21 @@ if (!empty($_POST['categorie'])) {
     $categorie = strip_tags($categorie);
     $categorie = htmlspecialchars($categorie, ENT_QUOTES, 'UTF-8');
 
-    $stmt = $db->prepare("UPDATE personne SET categorie = :categorie WHERE id = :id");
+    $stmt = $db->prepare("UPDATE personne SET categories = :categorie WHERE id = :id");
     $stmt->execute(array(
         'categorie' => $categorie,
+        'id' => $id
+    ));
+}
+
+if (!empty($_POST['sous_categories'])) {
+    $souscategorie = filter_input(INPUT_POST, 'sous_categories');
+    $souscategorie = strip_tags($souscategorie);
+    $souscategorie = htmlspecialchars($souscategorie, ENT_QUOTES, 'UTF-8');
+
+    $stmt = $db->prepare("UPDATE personne SET sous_categories = :souscategorie WHERE id = :id");
+    $stmt->execute(array(
+        'souscategorie' => $souscategorie,
         'id' => $id
     ));
 }

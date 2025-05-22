@@ -35,49 +35,50 @@ if (!$ecriture) {
 ?>
 <body>
 <h1>Modifier une personne</h1>
-<form action="../model/modifier_personne_bdd.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $personne['id']; ?>">
-    <label for="denomination">Dénomination :</label>
-    <input type="text" id="denomination" name="denomination"
-           placeholder="<?php echo $personne['denomination']; ?>">
+<div class="flex-container-vertical">
+    <form action="../model/modifier_personne_bdd.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $personne['id']; ?>">
+        <label for="denomination">Dénomination :</label>
+        <input type="text" id="denomination" name="denomination"
+               placeholder="<?php echo $personne['denomination']; ?>">
 
-    <label for="dirigant_contact">Dirigant/Contact :</label>
-    <input type="text" id="dirigant_contact" name="dirigant_contact"
-           placeholder="<?php echo $personne['dirigant_contact']; ?>">
+        <label for="dirigant_contact">Dirigant/Contact :</label>
+        <input type="text" id="dirigant_contact" name="dirigant_contact"
+               placeholder="<?php echo $personne['dirigant_contact']; ?>">
 
-    <label for="categorie">Catégorie :</label>
-    <input type="text" id="categorie" name="categorie"
-           placeholder="<?php echo $personne['categorie']; ?>">
+        <label for="categorie">Catégorie :</label>
+        <input type="text" id="categorie" name="categorie"
+               placeholder="<?php echo $personne['categories']; ?>">
 
-    <label for="sous_categories">Sous-catégories :</label>
-    <?php foreach ($sous_categories as $category) {
-        echo $category['nom'] . "<br>";
-    }
-    ?>
-    <button id="sous_categories" type="button" onclick="window.location.href='gerer_souscategorie.php?id=<?php echo urlencode($personne['id'])?>'">Gestion</button>
+        <label for="sous_categories">Sous-catégories :</label>
+        <input type="text" id="sous_categories" name="sous_categories"
+               placeholder="<?php echo $personne['sous_categories']; ?>">
 
-    <label for="adresse1">Adresse 1 :</label>
-    <input type="text" id="adresse1" name="adresse1"
-           placeholder="<?php echo $personne['adresse1']; ?>">
+        <label for="adresse1">Adresse 1 :</label>
+        <input type="text" id="adresse1" name="adresse1"
+               placeholder="<?php echo $personne['adresse1']; ?>">
 
-    <label for="adresse2">Adresse 2 :</label>
-    <input type="text" id="adresse2" name="adresse2"
-           placeholder="<?php echo $personne['adresse2']; ?>">
+        <label for="adresse2">Adresse 2 :</label>
+        <input type="text" id="adresse2" name="adresse2"
+               placeholder="<?php echo $personne['adresse2']; ?>">
 
-    <label for="code_postal">Code postal :</label>
-    <input type="text" id="code_postal" name="code_postal"
-           placeholder="<?php echo $personne['code_postal']; ?>">
+        <label for="code_postal">Code postal :</label>
+        <input type="text" id="code_postal" name="code_postal"
+               placeholder="<?php echo $personne['code_postal']; ?>">
 
-    <label for="ville">Ville :</label>
-    <input type="text" id="ville" name="ville" placeholder="<?php echo $personne['ville']; ?>">
+        <label for="ville">Ville :</label>
+        <input type="text" id="ville" name="ville" placeholder="<?php echo $personne['ville']; ?>">
 
-    <label for="tel">N° Tel :</label>
-    <input type="text" id="tel" name="tel" placeholder="<?php echo $personne['tel']; ?>">
+        <label for="tel">N° Tel :</label>
+        <input type="text" id="tel" name="tel" placeholder="<?php echo $personne['tel']; ?>">
 
-    <label for="mail">Mail :</label>
-    <input type="email" id="mail" name="mail" placeholder="<?php echo $personne['mail']; ?>">
-    <input type="submit" value="Modifier">
-</form>
-<button id="refuser" onclick="window.location.href='supprimer_personne.php?id=<?php echo $id_personne ?>'">Supprimer</button>
+        <label for="mail">Mail :</label>
+        <input type="email" id="mail" name="mail" placeholder="<?php echo $personne['mail']; ?>">
+        <input type="submit" value="Modifier">
+    </form>
+    <button id="refuser" onclick="window.location.href='supprimer_personne.php?id=<?php echo $id_personne ?>'">
+        Supprimer
+    </button>
+</div>
 </body>
 </html>

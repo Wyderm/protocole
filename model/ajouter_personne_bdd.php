@@ -114,7 +114,7 @@ $id_groupe->execute(array(
 $id_groupe = $id_groupe->fetch(PDO::FETCH_ASSOC);
 
 
-$stmt = $db->prepare("INSERT INTO personne (denomination, dirigant_contact, categories, sous_categories, adresse1, adresse2, code_postal, ville, tel, mail, id_groupe) VALUES (:denomination, :dirigant_contact, :adresse1, :adresse2, :code_postal, :ville, :tel, :mail, :id_groupe)");
+$stmt = $db->prepare("INSERT INTO personne (denomination, dirigant_contact, categories, sous_categories, adresse1, adresse2, code_postal, ville, tel, mail, id_groupe) VALUES (:denomination, :dirigant_contact, :categories, :sous_categories, :adresse1, :adresse2, :code_postal, :ville, :tel, :mail, :id_groupe)");
 $stmt->execute(array(
     'denomination' => $denomination,
     'dirigant_contact' => $dirigant_contact,

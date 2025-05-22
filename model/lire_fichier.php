@@ -65,12 +65,17 @@ function cleanInput($input): string
     return preg_replace('/[\x00-\x09\x0B-\x1F\x7F]/u', '', $input) ?? '';
 }
 
-function addTextWithLineBreaks($cell, $text): void
+function addTextWithLineBreaks($cell, $text, $paragraph_style): void
 {
-    $textRun = $cell->addTextRun(); // Crée un TextRun pour gérer plusieurs lignes
+    $text = mb_convert_encoding($text, 'UTF-8', 'auto');
+    $text = str_replace(['“', '”', '–'], ['"', '"', '-'], $text);
     $lines = explode("\n", $text); // Divise le texte en lignes
     foreach ($lines as $line) {
-        $textRun->addText(htmlspecialchars($line)); // Ajoute chaque ligne
-        $textRun->addTextBreak(); // Ajoute un saut de ligne après chaque ligne
+        $cell->addText($line, null, $paragraph_style);
     }
+}
+
+function removeLineBreaks($text): string
+{
+    return trim($text, "\n");
 }

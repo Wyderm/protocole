@@ -29,52 +29,52 @@ $ecriture = ecriture_permissions($_SESSION['id']);
 <div class="flex-container-horizontal not-bordered">
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Cherchez parmi les noms">
     <?php if ($ecriture): ?>
-    <button onclick="window.location.href='ajouter_personne.php?groupe=<?php echo $groupe ?>'">Ajouter personne</button>
+        <button onclick="window.location.href='ajouter_personne.php?groupe=<?php echo $groupe ?>'">Ajouter personne
+        </button>
     <?php endif; ?>
 </div>
 
-<table class="liste-personnes" id="tableau">
-    <tr>
-        <th>DENOMINATION</th>
-        <th>DIRIGANT/CONTACT</th>
-        <th>CATEGORIES</th>
-        <th>SOUS-CATEGORIES</th>
-        <th>ADRESSE 1</th>
-        <th>ADRESSE 2</th>
-        <th>CODE POSTAL</th>
-        <th>VILLE</th>
-        <th>N° TEL</th>
-        <th>MAIL</th>
-        <?php if ($ecriture): ?>
-        <th>Modifier</th>
-        <?php endif; ?>
-    </tr>
-    <?php foreach ($personnes as $personne): ?>
+<div class="table-container">
+    <table class="liste-personnes" id="tableau">
         <tr>
-            <td><?php echo $personne['denomination']; ?></td>
-            <td><?php echo $personne['dirigant_contact']; ?></td>
-            <td><?php echo $personne['categorie']; ?></td>
-            <td>
-                <?php
-                $id = $personne['id'];
-                $sous_categories = get_souscategories($id);
-                foreach ($sous_categories as $category) {
-                    echo htmlspecialchars($category['nom']) . "<br>";
-                }
-                ?>
-            </td>
-            <td><?php echo $personne['adresse1']; ?></td>
-            <td><?php echo $personne['adresse2']; ?></td>
-            <td><?php echo $personne['code_postal']; ?></td>
-            <td><?php echo $personne['ville']; ?></td>
-            <td><?php echo $personne['tel']; ?></td>
-            <td><?php echo $personne['mail']; ?></td>
+            <th>DENOMINATION</th>
+            <th>DIRIGANT/CONTACT</th>
+            <th>CATEGORIES</th>
+            <th>SOUS-CATEGORIES</th>
+            <th>ADRESSE 1</th>
+            <th>ADRESSE 2</th>
+            <th>CODE POSTAL</th>
+            <th>VILLE</th>
+            <th>N° TEL</th>
+            <th>MAIL</th>
             <?php if ($ecriture): ?>
-            <td><button onclick="window.location.href='modifier_personne.php?id=<?php echo $id; ?>'">Modifier</button></td>
+                <th>Modifier</th>
             <?php endif; ?>
         </tr>
-    <?php endforeach; ?>
-</table>
+        <?php foreach ($personnes as $personne): ?>
+            <tr>
+                <td><?php echo $personne['denomination']; ?></td>
+                <td><?php echo $personne['dirigant_contact']; ?></td>
+                <td><?php echo $personne['categories']; ?></td>
+                <td><?php echo $personne['sous_categories']; ?></td>
+                <td><?php echo $personne['adresse1']; ?></td>
+                <td><?php echo $personne['adresse2']; ?></td>
+                <td><?php echo $personne['code_postal']; ?></td>
+                <td><?php echo $personne['ville']; ?></td>
+                <td><?php echo $personne['tel']; ?></td>
+                <td><?php echo $personne['mail']; ?></td>
+                <?php
+                $id = $personne['id'];
+                if ($ecriture): ?>
+                    <td>
+                        <button onclick="window.location.href='modifier_personne.php?id=<?php echo $id; ?>'">Modifier
+                        </button>
+                    </td>
+                <?php endif; ?>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
 
 <script src="../controller/recherche_nom.js"></script>
 </body>

@@ -28,11 +28,6 @@ if (!$ecriture) {
 include 'connexion_pdo.php';
 global $db;
 
-$stmt = $db->prepare("DELETE FROM personne_souscategories WHERE id_personne = :id");
-$stmt->execute(array(
-    'id' => $id
-));
-
 $stmt = $db->prepare("DELETE FROM personne WHERE id = :id");
 $stmt->execute(array(
     'id' => $id

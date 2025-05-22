@@ -47,7 +47,7 @@ if (!$ecriture) {
     <label for="dirigant_contact">Dirigant/Contact :</label>
     <input type="text" id="dirigant_contact" name="dirigant_contact" placeholder="Dirigant/Contact">
 
-    <label for="categorie">Catégorie :</label>
+    <label for="categorie">Catégories :</label>
     <input type="text" id="categorie" name="categorie" placeholder="Catégorie">
 
     <label for="sous_categories">Sous-catégories :</label>
