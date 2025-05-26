@@ -70,6 +70,7 @@ function addTextWithLineBreaks($cell, $text, $paragraph_style): void
     $text = mb_convert_encoding($text, 'UTF-8', 'auto');
     $text = str_replace(['“', '”', '–'], ['"', '"', '-'], $text);
     $lines = explode("\n", $text); // Divise le texte en lignes
+    $lines = array_map('removeLineBreaks', $lines); // Supprime les retours à la ligne supplémentaires
     foreach ($lines as $line) {
         $cell->addText($line, null, $paragraph_style);
     }

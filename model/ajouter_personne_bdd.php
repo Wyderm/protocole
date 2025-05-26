@@ -28,6 +28,7 @@ if (!empty($_POST['denomination'])) {
     $denomination = filter_input(0, 'denomination');
     $denomination = strip_tags($denomination);
     $denomination = htmlspecialchars($denomination, ENT_QUOTES, 'UTF-8');
+    $denomination = trim($denomination);
 } else {
     $denomination = '';
 }
@@ -36,6 +37,7 @@ if (!empty($_POST['dirigant_contact'])) {
     $dirigant_contact = filter_input(0, 'dirigant_contact');
     $dirigant_contact = strip_tags($dirigant_contact);
     $dirigant_contact = htmlspecialchars($dirigant_contact, ENT_QUOTES, 'UTF-8');
+    $dirigant_contact = trim($dirigant_contact);
 } else {
     $dirigant_contact = '';
 }
@@ -44,6 +46,7 @@ if (!empty($_POST['categorie'])) {
     $categories = filter_input(0, 'categorie');
     $categories = strip_tags($categories);
     $categories = htmlspecialchars($categories, ENT_QUOTES, 'UTF-8');
+    $categories = trim($categories);
 } else {
     $categories = '';
 }
@@ -52,6 +55,7 @@ if (!empty($_POST['sous_categories'])) {
     $sous_categories = filter_input(0, 'sous_categories');
     $sous_categories = strip_tags($sous_categories);
     $sous_categories = htmlspecialchars($sous_categories, ENT_QUOTES, 'UTF-8');
+    $sous_categories = trim($sous_categories);
 } else {
     $sous_categories = '';
 }
@@ -60,6 +64,7 @@ if (!empty($_POST['adresse1'])) {
     $adresse1 = filter_input(0, 'adresse1');
     $adresse1 = strip_tags($adresse1);
     $adresse1 = htmlspecialchars($adresse1, ENT_QUOTES, 'UTF-8');
+    $adresse1 = trim($adresse1);
 } else {
     $adresse1 = '';
 }
@@ -68,6 +73,7 @@ if (!empty($_POST['adresse2'])) {
     $adresse2 = filter_input(0, 'adresse2');
     $adresse2 = strip_tags($adresse2);
     $adresse2 = htmlspecialchars($adresse2, ENT_QUOTES, 'UTF-8');
+    $adresse2 = trim($adresse2);
 } else {
     $adresse2 = '';
 }
@@ -76,6 +82,7 @@ if (!empty($_POST['code_postal'])) {
     $code_postal = filter_input(0, 'code_postal');
     $code_postal = strip_tags($code_postal);
     $code_postal = htmlspecialchars($code_postal, ENT_QUOTES, 'UTF-8');
+    $code_postal = trim($code_postal);
 } else {
     $code_postal = '';
 }
@@ -84,6 +91,7 @@ if (!empty($_POST['ville'])) {
     $ville = filter_input(0, 'ville');
     $ville = strip_tags($ville);
     $ville = htmlspecialchars($ville, ENT_QUOTES, 'UTF-8');
+    $ville = trim($ville);
 } else {
     $ville = '';
 }
@@ -92,6 +100,7 @@ if (!empty($_POST['tel'])) {
     $tel = filter_input(0, 'tel');
     $tel = strip_tags($tel);
     $tel = htmlspecialchars($tel, ENT_QUOTES, 'UTF-8');
+    $tel = trim($tel);
 } else {
     $tel = '';
 }
@@ -100,6 +109,7 @@ if (!empty($_POST['mail'])) {
     $mail = filter_input(0, 'mail', FILTER_SANITIZE_EMAIL);
     $mail = strip_tags($mail);
     $mail = htmlspecialchars($mail, ENT_QUOTES, 'UTF-8');
+    $mail = trim($mail);
 } else {
     $mail = '';
 }

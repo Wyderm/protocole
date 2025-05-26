@@ -29,6 +29,7 @@ include 'nav_bar.html';
         <h2>Gestion des listes</h2>
         <button class="flex-item" onclick="window.location.href='choisir_groupe.php'">Choisir groupe</button>
         <button onclick="window.location.href='publipostage.php'">Publipostage</button>
+        <button onclick="window.location.href='choix_groupe_mail.php'">Email</button>
     </div>
     <div class="flex-item flex-container-vertical">
         <h2>Gestion des comptes</h2>

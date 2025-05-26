@@ -55,7 +55,7 @@ if ($type == 'etiquette') {
         <?php endforeach; ?>
     </select>
     <input type="hidden" name="type" value="<?php echo htmlspecialchars($type, ENT_QUOTES, 'UTF-8'); ?>">
-    <input type="submit" value="Générer">
+    <input type="submit">
 </form>
 </body>
 </html>

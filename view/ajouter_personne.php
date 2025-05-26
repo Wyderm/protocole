@@ -48,10 +48,10 @@ if (!$ecriture) {
     <input type="text" id="dirigant_contact" name="dirigant_contact" placeholder="Dirigant/Contact">
 
     <label for="categorie">Catégories :</label>
-    <input type="text" id="categorie" name="categorie" placeholder="Catégorie">
+    <textarea id="categorie" name="categorie" placeholder="Catégorie"></textarea>
 
     <label for="sous_categories">Sous-catégories :</label>
-    <input type="text" id="sous_categories" name="sous_categories" placeholder="Sous-catégories">
+    <textarea id="sous_categories" name="sous_categories" placeholder="Sous-catégories"></textarea>
 
     <label for="adresse1">Adresse 1 :</label>
     <input type="text" id="adresse1" name="adresse1" placeholder="Adresse 1">

@@ -2,6 +2,7 @@
 include "connexion_pdo.php";
 global $db;
 session_start();
+session_regenerate_id();
 $_SESSION['valide'] = false;
 
 // Vérifier si le formulaire a été soumis

@@ -47,12 +47,12 @@ if (!$ecriture) {
                placeholder="<?php echo $personne['dirigant_contact']; ?>">
 
         <label for="categorie">Catégorie :</label>
-        <input type="text" id="categorie" name="categorie"
-               placeholder="<?php echo $personne['categories']; ?>">
+        <textarea id="categorie" name="categorie"
+                  placeholder="<?php echo $personne['categories']; ?>"></textarea>
 
         <label for="sous_categories">Sous-catégories :</label>
-        <input type="text" id="sous_categories" name="sous_categories"
-               placeholder="<?php echo $personne['sous_categories']; ?>">
+        <textarea id="sous_categories" name="sous_categories"
+                  placeholder="<?php echo $personne['sous_categories']; ?>"></textarea>
 
         <label for="adresse1">Adresse 1 :</label>
         <input type="text" id="adresse1" name="adresse1"
