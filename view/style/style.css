@@ -387,7 +387,6 @@ select#annees {
 .table-container {
     overflow-x: auto;
     width: 100%;
-    transform: rotateX(180deg);
     border: 2px solid lightgray;
     max-height: 500px;
     overflow-y: scroll;
@@ -407,7 +406,6 @@ table {
     table-layout: auto;
     width: 100%;
     border-collapse: collapse;
-    transform: rotateX(180deg);
 }
 
 td {

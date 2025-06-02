@@ -51,7 +51,7 @@ $mail_erreur = [];
 $mail->CharSet = 'UTF-8';
 $mail->isHTML(true);
 $mail->setFrom("stagiaire-dev@ville-saint-saulve.fr", "Mairie de Saint-Saulve");
-$mail->Subject = "Validation de compte";
+$mail->Subject = "Mail groupé";
 $mail->Body = $texte_mail;
 
 foreach ($lespersonnes as $personne) {
