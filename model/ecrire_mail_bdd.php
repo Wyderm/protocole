@@ -26,8 +26,6 @@ redirect_groupe($groupe);
 
 if (isset($_POST['personnes']) && is_array($_POST['personnes'])) {
     $personnes = filter_var_array($_POST['personnes'], FILTER_SANITIZE_NUMBER_INT);
-    $personnes = array_map('htmlspecialchars', $personnes, ENT_QUOTES, 'UTF-8');
-    $personnes = array_map('strip_tags', $personnes, ENT_QUOTES, 'UTF-8');
 } else {
     header("Location: hub_admin.php");
 }
