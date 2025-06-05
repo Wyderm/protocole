@@ -55,6 +55,17 @@ if (!empty($_POST["username"])) {
         exit();
     }
 
+    // Vérifier si l'email existe déjà
+    $stmt = $db->prepare("SELECT COUNT(*) FROM utilisateur WHERE email = :email");
+    $stmt->execute(array(
+        "email" => $email
+    ));
+    $count_email = $stmt->fetchColumn();
+    if ($count_email > 0) {
+        header("Location: ../view/erreur_email.html");
+        exit();
+    }
+
 
 
     // Insérer les éléments

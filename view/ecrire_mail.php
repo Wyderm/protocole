@@ -31,6 +31,8 @@ global $personnes, $groupe;
 <body>
 <h1>Envoyer un email groupé</h1>
 <form class="not-bordered" action="../model/ecrire_mail_bdd.php" method="post">
+    <label for="objet" style="margin-bottom: 5px;">Entrez l'objet du message</label>
+    <input type="text" id="objet" name="objet" required style="margin-bottom: 10px;">
     <label for="mail" style="margin-bottom: 5px;">Entrez le message à envoyer</label>
     <textarea id="mail" name="mail" required style="margin-bottom: 10px;"></textarea>
     <div class="table-container">

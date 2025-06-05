@@ -42,6 +42,7 @@ $type = $infos['type'];
     <select id="type" name="type">
         <option value="admin" <?php if ($type == 'admin') echo 'selected'; ?>>Admin</option>
         <option value="user" <?php if ($type == 'user') echo 'selected'; ?>>Utilisateur</option>
+        <option value="lecteur" <?php if ($type == 'lecteur') echo 'selected'; ?>>Lecteur</option>
     </select>
 
     <input type="submit" value="Modifier le compte">

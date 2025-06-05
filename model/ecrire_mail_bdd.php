@@ -21,6 +21,10 @@ $texte_mail = filter_input(INPUT_POST, 'mail');
 $texte_mail = strip_tags($texte_mail);
 $texte_mail = htmlspecialchars($texte_mail, ENT_QUOTES, 'UTF-8');
 
+$objet_mail = filter_input(INPUT_POST, 'objet');
+$objet_mail = strip_tags($objet_mail);
+$objet_mail = htmlspecialchars($objet_mail, ENT_QUOTES, 'UTF-8');
+
 include 'gestion_permissions.php';
 redirect_groupe($groupe);
 
@@ -49,7 +53,7 @@ $mail_erreur = [];
 $mail->CharSet = 'UTF-8';
 $mail->isHTML(true);
 $mail->setFrom("stagiaire-dev@ville-saint-saulve.fr", "Mairie de Saint-Saulve");
-$mail->Subject = "Mail groupé";
+$mail->Subject = "$objet_mail";
 $mail->Body = $texte_mail;
 
 foreach ($lespersonnes as $personne) {

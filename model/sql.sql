@@ -37,7 +37,7 @@ CREATE TABLE utilisateur
     username                TEXT NOT NULL UNIQUE,
     password                TEXT NOT NULL,
     type                    TEXT NOT NULL DEFAULT 'user' CHECK (type IN ('admin', 'user', 'lecteur')),
-    email                   TEXT NOT NULL,
+    email                   TEXT NOT NULL UNIQUE,
     valide                  BOOLEAN       DEFAULT false,
     reset_token_hash        TEXT          DEFAULT NULL,
     reset_token_expiration  TEXT          DEFAULT NULL,
@@ -88,7 +88,7 @@ VALUES ('ANCIENS_ELUS'),
 
 
 -- Insertion personnes
-INSERT INTO personne (denomination, dirigant_contact, categorie, adresse1, adresse2, code_postal, ville, tel, mail,
+INSERT INTO personne (denomination, dirigant_contact, categories, adresse1, adresse2, code_postal, ville, tel, mail,
                       id_groupe)
 VALUES ('Société A', 'Mathéo DEGHAYE', 'entreprise', '1 rue de la Paix', '', 59233, 'Maing', '0123456789',
         'matheo.deghaye@gmail.com', 11),
