@@ -1,5 +1,5 @@
 <?php
-include_once_once 'connexion_pdo.php';
+include_once 'connexion_pdo.php';
 header('Content-Type: application/json');
 global $db;
 

@@ -1,5 +1,5 @@
 <?php
-include_once_once "../model/connexion_pdo.php";
+include_once "../model/connexion_pdo.php";
 global $db;
 if (!isset($_SESSION)) {
     session_start();
@@ -93,7 +93,7 @@ if (!empty($_POST["username"])) {
     ));
     $id = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $mail = require_once_once __DIR__ . "/mailer.php";
+    $mail = require_once __DIR__ . "/mailer.php";
 
     $mail->CharSet = 'UTF-8';
     $mail->isHTML(true);

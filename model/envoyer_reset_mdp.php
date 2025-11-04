@@ -12,7 +12,7 @@ $token = bin2hex(random_bytes(16));
 $token_hash = hash('sha256', $token);
 $expiration = date('Y-m-d H:i:s', time() + 60 * 15);
 
-include_once_once "connexion_pdo.php";
+include_once "connexion_pdo.php";
 global $db;
 
 $stmt = $db->prepare("UPDATE utilisateur SET reset_token_hash = :token, reset_token_expiration = :expiration WHERE email = :email");
@@ -24,7 +24,7 @@ $stmt->execute(array(
 
 if ($stmt->rowCount() > 0) {
     // Envoi de l'email
-    $mail = require_once_once __DIR__ . "/mailer.php";
+    $mail = require_once __DIR__ . "/mailer.php";
 
     $mail->CharSet = 'UTF-8';
     $mail->isHTML(true);

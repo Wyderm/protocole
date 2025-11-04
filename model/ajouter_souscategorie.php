@@ -11,7 +11,7 @@ if (empty($_POST['id']) || empty($_POST['sous_categorie'])) {
     exit();
 }
 
-include_once_once "connexion_pdo.php";
+include_once "connexion_pdo.php";
 global $db;
 
 $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
