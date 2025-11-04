@@ -11,7 +11,7 @@ if ($_SESSION['type'] != 'admin') {
     exit();
 }
 
-include 'connexion_pdo.php';
+include_once 'connexion_pdo.php';
 global $db;
 
 if (empty($_POST['id']) || empty($_POST['groupe'])) {
