@@ -3,7 +3,7 @@ if (!isset($_POST['password'])) {
     header("Location: ../view/reset_password.php");
     exit();
 }
-include "../model/connexion_pdo.php";
+include_once "../model/connexion_pdo.php";
 global $db;
 
 
