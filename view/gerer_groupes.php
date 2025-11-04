@@ -51,7 +51,7 @@ $groupes_utilisateur = getGroupesUtilisateur($compte['id_compte']);
     <form action="../model/supprimer_groupe_user.php" method="post">
         <h2>Supprimer</h2>
         <label for="groupe">Sous-catégories :</label>
-        <select name="groupe" id="groupe">
+        <select name="groupe2" id="groupe2">
             <?php foreach ($groupes_utilisateur as $groupe): ?>
                 <option value="<?php echo htmlspecialchars($groupe['id']); ?>"><?php echo htmlspecialchars($groupe['nom']); ?></option>
             <?php endforeach; ?>
