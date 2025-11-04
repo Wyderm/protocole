@@ -2,7 +2,7 @@
 
 include_once '../model/connexion_pdo.php';
 
-function get_all_groupes(): array
+function getAllGroupes(): array
 {
     global $db;
     $stmt = $db->prepare("SELECT * FROM groupe");
@@ -10,7 +10,7 @@ function get_all_groupes(): array
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function get_groupes_utilisateur($id_utilisateur): array
+function getGroupesUtilisateur($id_utilisateur): array
 {
     global $db;
     $stmt = $db->prepare("SELECT * FROM utilisateur_groupe JOIN groupe ON utilisateur_groupe.id_groupe = groupe.id WHERE id_utilisateur = :id_utilisateur");

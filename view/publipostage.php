@@ -9,7 +9,7 @@ if ($_SESSION['valide'] !== true) {
 
 include '../model/get_all_groupes.php';
 $id = $_SESSION['id'];
-$groupes = get_groupes_utilisateur($id);
+$groupes = getGroupesUtilisateur($id);
 
 ?>
 

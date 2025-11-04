@@ -25,8 +25,8 @@ include '../model/get_utilisateur_by_id.php';
 global $compte;
 
 include '../model/get_all_groupes.php';
-$groupes = get_all_groupes();
-$groupes_utilisateur = get_groupes_utilisateur($compte['id_compte']);
+$groupes = getAllGroupes();
+$groupes_utilisateur = getGroupesUtilisateur($compte['id_compte']);
 ?>
 <body>
 <div class="flex-container-vertical not-bordered">

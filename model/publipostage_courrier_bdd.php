@@ -29,7 +29,7 @@ $groupe = strip_tags($groupe);
 $groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 
 include 'gestion_permissions.php';
-redirect_groupe($groupe);
+redirectGroupe($groupe);
 
 
 if (isset($_POST['personnes']) && is_array($_POST['personnes'])) {

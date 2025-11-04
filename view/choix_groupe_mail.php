@@ -13,7 +13,7 @@ if ($_SESSION['type'] != 'admin') {
 
 include '../model/get_all_groupes.php';
 $id = $_SESSION['id'];
-$groupes = get_groupes_utilisateur($id);
+$groupes = getGroupesUtilisateur($id);
 
 include 'nav_bar.html';
 ?>

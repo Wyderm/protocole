@@ -19,7 +19,7 @@ if (isset($_SESSION['valide']) && $_SESSION['valide'] && $_SESSION['type'] != 'a
 }
 
 include '../model/get_all_groupes.php';
-$groupes = get_all_groupes();
+$groupes = getAllGroupes();
 ?>
 <h1>Créer un compte</h1>
 <form method="post" action="../model/creer_compte_bdd.php">

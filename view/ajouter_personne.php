@@ -29,7 +29,7 @@ $groupe = strip_tags($groupe);
 $groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 
 include '../model/gestion_permissions.php';
-redirect_groupe($groupe);
+redirectGroupe($groupe);
 $ecriture = ecriture_permissions($_SESSION['id']);
 if (!$ecriture) {
     header("Location: ../view/hub_utilisateur.php");

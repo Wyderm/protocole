@@ -26,7 +26,7 @@ $objet_mail = strip_tags($objet_mail);
 $objet_mail = htmlspecialchars($objet_mail, ENT_QUOTES, 'UTF-8');
 
 include_once 'gestion_permissions.php';
-redirect_groupe($groupe);
+redirectGroupe($groupe);
 
 if (isset($_POST['personnes']) && is_array($_POST['personnes'])) {
     $personnes = filter_var_array($_POST['personnes'], FILTER_SANITIZE_NUMBER_INT);

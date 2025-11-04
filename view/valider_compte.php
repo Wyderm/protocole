@@ -37,7 +37,7 @@ include '../model/get_all_groupes.php';
         </tr>
         <?php
         foreach ($comptes as $compte) {
-            $groupes_utilisateur = get_groupes_utilisateur($compte['id_compte']);
+            $groupes_utilisateur = getGroupesUtilisateur($compte['id_compte']);
             echo "<tr>";
             echo "<td>" . htmlspecialchars($compte['id_compte']) . "</td>";
             echo "<td>" . htmlspecialchars($compte['email']) . "</td>";
