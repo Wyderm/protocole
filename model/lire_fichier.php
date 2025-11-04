@@ -4,7 +4,6 @@ require_once '../vendor/autoload.php';
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Exception\Exception;
-
 function extractDocxText($filePath): string
 {
     $text = '';
@@ -13,30 +12,19 @@ function extractDocxText($filePath): string
 
         foreach ($phpWord->getSections() as $section) {
             foreach ($section->getElements() as $element) {
-                $text .= processElement($element);
+                if (method_exists($element, 'getText')) {
+                    $text .= $element->getText() . "\n";
+                } elseif (method_exists($element, 'getElements')) {
+                    foreach ($element->getElements() as $childElement) {
+                        if (method_exists($childElement, 'getText')) {
+                            $text .= $childElement->getText() . "\n";
+                        }
+                    }
+                } else {
+                    error_log('Type d\'élément non géré : ' . get_class($element));
+                }
             }
         }
-    } catch (Exception $e) {
-        echo "Erreur lors de la lecture du fichier : " . $e->getMessage();
-        exit();
-    }
-    return $text;
-}
-
-function processElement($element): string
-{
-    $text = '';
-    if (method_exists($element, 'getText')) {
-        $text .= $element->getText() . "\n";
-    } elseif (method_exists($element, 'getElements')) {
-        foreach ($element->getElements() as $childElement) {
-            if (method_exists($childElement, 'getText')) {
-                $text .= $childElement->getText() . "\n";
-            }
-        }
-    } else {
-        error_log('Type d\'élément non géré : ' . get_class($element));
-    }
     return $text;
 }
 
