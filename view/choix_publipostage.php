@@ -7,7 +7,7 @@ if ($_SESSION['valide'] !== true) {
     exit();
 }
 
-include '../model/get_all_groupes.php';
+include_once '../model/get_all_groupes.php';
 $id = $_SESSION['id'];
 $groupes = getGroupesUtilisateur($id);
 
@@ -22,7 +22,7 @@ $groupes = getGroupesUtilisateur($id);
 </head>
 <body>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 ?>
 <h1>Choix publipostage</h1>
 </body>

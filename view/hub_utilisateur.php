@@ -22,7 +22,7 @@ if ($_SESSION['type'] == 'admin') {
 </head>
 <body>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 ?>
 <h1>Gestion protocole</h1>
 <div class="flex-container-vertical border-vertical">

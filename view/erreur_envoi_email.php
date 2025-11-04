@@ -28,7 +28,7 @@ if (isset($_GET['erreurs'])) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include_once 'nav_bar.html';
+include_once_once 'nav_bar.html';
 ?>
 <body>
 <h1>Adresses email invalides</h1>

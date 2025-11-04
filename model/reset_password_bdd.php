@@ -1,5 +1,5 @@
 <?php
-include "../model/connexion_pdo.php";
+include_once "../model/connexion_pdo.php";
 global $db;
 
 if (!empty($_GET['token'])) {

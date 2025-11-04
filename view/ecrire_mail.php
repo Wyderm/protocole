@@ -14,9 +14,9 @@ if ($_SESSION['type'] != 'admin') {
     exit();
 }
 
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 
-include '../model/liste_personnes_bdd.php';
+include_once '../model/liste_personnes_bdd.php';
 global $personnes, $groupe;
 
 ?>
@@ -32,9 +32,9 @@ global $personnes, $groupe;
 <h1>Envoyer un email groupé</h1>
 <form class="not-bordered" action="../model/ecrire_mail_bdd.php" method="post">
     <label for="objet" style="margin-bottom: 5px;">Entrez l'objet du message</label>
-    <input type="text" id="objet" name="objet" required style="margin-bottom: 10px;">
+    <input type="text" id="objet" name="objet" require_onced style="margin-bottom: 10px;">
     <label for="mail" style="margin-bottom: 5px;">Entrez le message à envoyer</label>
-    <textarea id="mail" name="mail" required style="margin-bottom: 10px;"></textarea>
+    <textarea id="mail" name="mail" require_onced style="margin-bottom: 10px;"></textarea>
     <div class="table-container">
         <table class="liste-personnes" id="tableau">
             <tr>

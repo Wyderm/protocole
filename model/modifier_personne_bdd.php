@@ -12,14 +12,14 @@ if (empty($_POST['id'])) {
     exit();
 }
 
-include "connexion_pdo.php";
+include_once "connexion_pdo.php";
 global $db;
 
 $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 $id = strip_tags($id);
 $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
 
-include '../model/gestion_permissions.php';
+include_once '../model/gestion_permissions.php';
 redirect_personne($id);
 $ecriture = ecriture_permissions($_SESSION['id']);
 if (!$ecriture) {

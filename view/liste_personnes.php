@@ -19,8 +19,8 @@ if (!$_SESSION['valide']) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include 'nav_bar.html';
-include '../model/liste_personnes_bdd.php';
+include_once 'nav_bar.html';
+include_once '../model/liste_personnes_bdd.php';
 global $personnes, $groupe;
 
 $ecriture = ecriture_permissions($_SESSION['id']);

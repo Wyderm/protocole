@@ -18,8 +18,8 @@ if (!$_SESSION['valide']) {
 </head>
 <body>
 <?php
-include 'nav_bar.html';
-include '../model/choisir_groupe_bdd.php';
+include_once 'nav_bar.html';
+include_once '../model/choisir_groupe_bdd.php';
 global $groupes;
 ?>
 

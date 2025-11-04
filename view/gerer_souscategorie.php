@@ -16,8 +16,8 @@ if (!$_SESSION['valide']) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include 'nav_bar.html';
-include '../model/get_personne_by_id.php';
+include_once 'nav_bar.html';
+include_once '../model/get_personne_by_id.php';
 global $personne, $sous_categories;
 ?>
 <body>

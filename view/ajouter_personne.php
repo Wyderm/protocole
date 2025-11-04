@@ -17,7 +17,7 @@ if (!$_SESSION['valide']) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 
 if (empty($_GET['groupe'])) {
     header("Location: ../view/liste_personnes.php");
@@ -28,7 +28,7 @@ $groupe = filter_input(INPUT_GET, 'groupe');
 $groupe = strip_tags($groupe);
 $groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 
-include '../model/gestion_permissions.php';
+include_once '../model/gestion_permissions.php';
 redirectGroupe($groupe);
 $ecriture = ecriture_permissions($_SESSION['id']);
 if (!$ecriture) {

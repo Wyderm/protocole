@@ -26,7 +26,7 @@ $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
 </head>
 <body>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 ?>
 <div class="center-vertical">
     <h1>Voulez-vous vraiment refuser ce compte ?</h1>

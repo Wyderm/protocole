@@ -7,7 +7,7 @@ if ($_SESSION['valide'] !== true) {
     exit();
 }
 
-include '../model/get_all_groupes.php';
+include_once '../model/get_all_groupes.php';
 $id = $_SESSION['id'];
 $groupes = getGroupesUtilisateur($id);
 
@@ -23,7 +23,7 @@ $groupes = getGroupesUtilisateur($id);
 <body>
 
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 
 $type = filter_input(INPUT_GET, 'type');
 $type = strip_tags($type);
@@ -47,7 +47,7 @@ if ($type == 'etiquette') {
 ?>
 <form action="liste_publipostage.php" method="post">
     <label for="groupe">Sélectionnez un groupe :</label>
-    <select id="groupe" name="groupe" required>
+    <select id="groupe" name="groupe" require_onced>
         <?php foreach ($groupes as $groupe): ?>
             <option value="<?php echo htmlspecialchars($groupe['nom'], ENT_QUOTES, 'UTF-8'); ?>">
                 <?php echo htmlspecialchars($groupe['nom'], ENT_QUOTES, 'UTF-8'); ?>

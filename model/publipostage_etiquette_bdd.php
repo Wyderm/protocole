@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once_once '../vendor/autoload.php';
 
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
@@ -12,8 +12,8 @@ if (!$_SESSION['valide']) {
     exit();
 }
 
-include 'lire_fichier.php';
-include 'connexion_pdo.php';
+include_once 'lire_fichier.php';
+include_once 'connexion_pdo.php';
 global $db;
 
 if (empty($_POST['groupe']) || !isset($_FILES['file'])) {
@@ -28,7 +28,7 @@ $groupe = filter_input(INPUT_POST, 'groupe');
 $groupe = strip_tags($groupe);
 $groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 
-include 'gestion_permissions.php';
+include_once 'gestion_permissions.php';
 redirectGroupe($groupe);
 
 

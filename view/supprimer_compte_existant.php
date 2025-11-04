@@ -13,8 +13,8 @@ elseif ($_SESSION['type'] != 'admin') {
     header("Location: ../view/hub_utilisateur.php");
     exit();
 }
-include 'nav_bar.html';
-include "../model/get_utilisateur_by_id.php";
+include_once 'nav_bar.html';
+include_once "../model/get_utilisateur_by_id.php";
 global $compte;
 
 $id_utilisateur = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);

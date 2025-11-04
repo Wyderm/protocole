@@ -1,5 +1,5 @@
 <?php
-include_once "../model/connexion_pdo.php";
+include_once_once "../model/connexion_pdo.php";
 global $db;
 if (!isset($_SESSION)) {
     session_start();
@@ -24,7 +24,7 @@ if (!empty($_POST["username"])) {
     $confirm_password = filter_input(0, 'confirm_password');
     $confirm_password = strip_tags($confirm_password);
     $confirm_password = htmlspecialchars($confirm_password, ENT_QUOTES, 'UTF-8');
-    $groupes = filter_input(0, 'groupes', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+    $groupes = filter_input(0, 'groupes', FILTER_DEFAULT, FILTER_require_once_ARRAY);
     $groupes = array_map('strip_tags', $groupes);
     $groupes = array_map('htmlspecialchars', $groupes);
 
@@ -93,7 +93,7 @@ if (!empty($_POST["username"])) {
     ));
     $id = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $mail = require_once __DIR__ . "/mailer.php";
+    $mail = require_once_once __DIR__ . "/mailer.php";
 
     $mail->CharSet = 'UTF-8';
     $mail->isHTML(true);

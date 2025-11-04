@@ -1,6 +1,6 @@
 <?php
-include "../model/connexion_pdo.php";
-include "../model/get_utilisateur_by_id.php";
+include_once "../model/connexion_pdo.php";
+include_once "../model/get_utilisateur_by_id.php";
 global $db, $compte;
 if (!isset($_SESSION)) {
     session_start();
@@ -31,7 +31,7 @@ $id = $compte['id_compte'];
 </head>
 <body>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 ?>
 <h1>Valider le compte de <?php echo htmlspecialchars($compte['username']); ?> :</h1>
 <div class="flex-container-horizontal not-bordered">

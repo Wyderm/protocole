@@ -20,13 +20,13 @@
                 "reference": "bf74d75a1fde6beaa34a0ddae2ec5fce0f72a144",
                 "shasum": ""
             },
-            "require": {
+            "require_once": {
                 "ext-ctype": "*",
                 "ext-filter": "*",
                 "ext-hash": "*",
                 "php": ">=5.5.0"
             },
-            "require-dev": {
+            "require_once-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
                 "doctrine/annotations": "^1.2.6 || ^1.13.3",
                 "php-parallel-lint/php-console-highlighter": "^1.0.0",
@@ -101,12 +101,12 @@
                 "reference": "fc2eb6d1a61b058d5dac77197059db30ee3c8329",
                 "shasum": ""
             },
-            "require": {
+            "require_once": {
                 "ext-dom": "*",
                 "ext-xml": "*",
                 "php": "^7.1|^8.0"
             },
-            "require-dev": {
+            "require_once-dev": {
                 "phpstan/phpstan": "^0.12.88 || ^1.0.0",
                 "phpunit/phpunit": "^7.0 || ^9.0"
             },
@@ -153,14 +153,14 @@
                 "reference": "8392134ce4b5dba65130ba956231a1602b848b7f",
                 "shasum": ""
             },
-            "require": {
+            "require_once": {
                 "ext-dom": "*",
                 "ext-json": "*",
                 "ext-xml": "*",
                 "php": "^7.1|^8.0",
                 "phpoffice/math": "^0.2"
             },
-            "require-dev": {
+            "require_once-dev": {
                 "dompdf/dompdf": "^2.0",
                 "ext-gd": "*",
                 "ext-libxml": "*",

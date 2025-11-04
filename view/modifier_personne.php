@@ -17,15 +17,15 @@ if (!$_SESSION['valide']) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include 'nav_bar.html';
-include '../model/get_personne_by_id.php';
+include_once 'nav_bar.html';
+include_once '../model/get_personne_by_id.php';
 global $personne, $sous_categories;
 
 $id_personne = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $id_personne = strip_tags($id_personne);
 $id_personne = htmlspecialchars($id_personne, ENT_QUOTES, 'UTF-8');
 
-include '../model/gestion_permissions.php';
+include_once '../model/gestion_permissions.php';
 redirect_personne($id_personne);
 $ecriture = ecriture_permissions($_SESSION['id']);
 if (!$ecriture) {

@@ -17,7 +17,7 @@ if (empty($_GET['id'])) {
     $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
 }
 
-include '../model/gestion_permissions.php';
+include_once '../model/gestion_permissions.php';
 redirect_personne($id);
 $ecriture = ecriture_permissions($_SESSION['id']);
 if (!$ecriture) {
@@ -25,7 +25,7 @@ if (!$ecriture) {
     exit();
 }
 
-include 'connexion_pdo.php';
+include_once 'connexion_pdo.php';
 global $db;
 
 $stmt = $db->prepare("DELETE FROM personne WHERE id = :id");

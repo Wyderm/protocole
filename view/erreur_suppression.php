@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 
 if (!isset($_SESSION)) {
     session_start();

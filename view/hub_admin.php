@@ -21,7 +21,7 @@ if (!$_SESSION['valide']) {
 </head>
 <body>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 ?>
 <h1>Gestion protocole</h1>
 <div class="flex-container-horizontal div-admin">

@@ -7,7 +7,7 @@ elseif ($_SESSION['type'] != 'admin') {
     header("Location: ../view/hub_utilisateur.php");
     exit();
 }
-include "connexion_pdo.php";
+include_once "connexion_pdo.php";
 global $db;
 
 $id = filter_input(0, 'id_utilisateur', FILTER_SANITIZE_NUMBER_INT);

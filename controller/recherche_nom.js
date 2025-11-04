@@ -10,7 +10,7 @@ function myFunction() {
         td = tr[i].getElementsByTagName("td")[1];
         if (td) {
             txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().includes(filtre) > -1) {
+            if (txtValue.toUpperCase().include_onces(filtre) > -1) {
                 tr[i].style.display = "";
             } else {
                 tr[i].style.display = "none";

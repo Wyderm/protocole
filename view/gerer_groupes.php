@@ -20,11 +20,11 @@ if ($_SESSION['type'] != 'admin') {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include 'nav_bar.html';
-include '../model/get_utilisateur_by_id.php';
+include_once 'nav_bar.html';
+include_once '../model/get_utilisateur_by_id.php';
 global $compte;
 
-include '../model/get_all_groupes.php';
+include_once '../model/get_all_groupes.php';
 $groupes = getAllGroupes();
 $groupes_utilisateur = getGroupesUtilisateur($compte['id_compte']);
 ?>

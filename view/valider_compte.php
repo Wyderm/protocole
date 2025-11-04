@@ -10,7 +10,7 @@ if ($_SESSION['valide'] !== true) {
     exit();
 }
 
-include "../model/valider_compte_bdd.php";
+include_once "../model/valider_compte_bdd.php";
 global $comptes
 ?>
 <!DOCTYPE html>
@@ -22,8 +22,8 @@ global $comptes
 </head>
 <body>
 <?php
-include 'nav_bar.html';
-include '../model/get_all_groupes.php';
+include_once 'nav_bar.html';
+include_once '../model/get_all_groupes.php';
 ?>
 <h1>Comptes à valider : </h1>
 <div class="table-container">

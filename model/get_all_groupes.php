@@ -1,6 +1,6 @@
 <?php
 
-include_once '../model/connexion_pdo.php';
+include_once_once '../model/connexion_pdo.php';
 
 function getAllGroupes(): array
 {

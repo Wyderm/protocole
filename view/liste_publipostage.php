@@ -16,10 +16,10 @@ $type = strip_tags($type);
 $type = htmlspecialchars($type, ENT_QUOTES, 'UTF-8');
 
 
-include '../model/liste_personnes_bdd.php';
+include_once '../model/liste_personnes_bdd.php';
 global $personnes, $groupe;
 
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 if ($type == 'etiquette') {
     echo '<h1>Publipostage Etiquette</h1>';
     $url = '../model/publipostage_etiquette_bdd.php';
@@ -39,7 +39,7 @@ $groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 
 <form class="not-bordered" action="<?php echo $url; ?>" method="post" enctype="multipart/form-data">
     <label for="file">Sélectionnez un fichier Word :</label>
-    <input type="file" id="file" name="file" accept=".docx, .odt" required style="padding-bottom: 10px;">
+    <input type="file" id="file" name="file" accept=".docx, .odt" require_onced style="padding-bottom: 10px;">
     <div class="table-container">
         <table class="liste-personnes" id="tableau">
             <tr>

@@ -19,12 +19,12 @@ elseif ($_SESSION['type'] !== 'admin') {
     exit();
 }
 
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 ?>
 <h1>Modifier un compte</h1>
 <form method="post" action="modifier_compte.php">
     <label for="email_recherche">Adresse e-mail du compte à modifier :</label>
-    <input type="email" id="email_recherche" name="email_recherche" autocomplete="off" required>
+    <input type="email" id="email_recherche" name="email_recherche" autocomplete="off" require_onced>
     <ul id="result_email" class="recherche" hidden></ul>
     <input type="submit" value="Rechercher">
 </form>

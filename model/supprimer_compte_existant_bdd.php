@@ -14,7 +14,7 @@ if ($_SESSION['valide'] !== true) {
     exit();
 }
 
-include "connexion_pdo.php";
+include_once "connexion_pdo.php";
 global $db;
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);

@@ -10,7 +10,7 @@ session_cache_limiter(false);
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 
 if (!isset($_SESSION)) {
     session_start();
@@ -19,7 +19,7 @@ if (!isset($_SESSION)) {
     exit();
 }
 
-include "../model/get_infos_compte_email.php";
+include_once "../model/get_infos_compte_email.php";
 global $infos;
 
 $id_utilisateur = $infos['id_compte'];
