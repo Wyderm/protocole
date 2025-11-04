@@ -20,8 +20,8 @@ email_recherche.onkeyup = (e) => {
                 result_email.classList.add('active');
                 showSuggestions(result_email, suggestions);
                 let allNom = document.querySelectorAll('#result_email li');
-                for (let i = 0; i < allNom.length; i++) {
-                    allNom[i].setAttribute('onclick', 'selectNom(this)');
+                for (element in allNom) {
+                    element.setAttribute('onclick', 'selectNom(this)');
                 }
             })
             .catch(error => {
@@ -42,11 +42,11 @@ function selectNom(element) {
 
 function showSuggestions(element, list) {
     let listData;
-    if (!list.length) {
-         let userValue = element.previousElementSibling.value;
-        listData = '<li>' + userValue + '</li>';
-    } else {
+    if (list.length) {
         listData = list.join('');
+    } else {
+        let userValue = element.previousElementSibling.value;
+        listData = '<li>' + userValue + '</li>';
     }
     element.innerHTML = listData;
 }
