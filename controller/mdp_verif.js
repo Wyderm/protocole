@@ -18,7 +18,7 @@ function verif() {
         return false;
     }
 
-    if (!/[0-9]/.test(passwordValue)) {
+    if (!/\d/.test(passwordValue)) {
         return false;
     }
 
