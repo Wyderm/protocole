@@ -9,7 +9,7 @@ $token = htmlspecialchars($token);
 
 $token_hash = hash('sha256', $token);
 
-include 'connexion_bdd.php';
+include_once 'connexion_bdd.php';
 global $db;
 
 $stmt = $db->prepare("SELECT id_compte FROM utilisateur WHERE account_activation_hash = :token_hash");
