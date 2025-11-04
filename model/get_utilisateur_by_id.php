@@ -1,5 +1,5 @@
 <?php
-include "connexion_pdo.php";
+include_once "connexion_pdo.php";
 global $db;
 
 if (!isset($_SESSION)) {
@@ -8,13 +8,9 @@ if (!isset($_SESSION)) {
 if ($_SESSION['valide'] !== true) {
     header("Location: ../view/connexion.php");
     exit();
-} elseif ($_SESSION['type'] !== 'admin') {
+} elseif ($_SESSION['type'] !== 'admin' || empty($_GET['id'])) {
     header("Location: ../view/hub_admin.php");
     exit();
-} elseif (empty($_GET['id'])) {
-    header("Location: ../view/hub_admin.php");
-    exit();
-}
 
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $id = strip_tags($id);
