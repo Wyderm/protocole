@@ -16,7 +16,7 @@ else {
     $groupe = htmlspecialchars($groupe, ENT_QUOTES, 'UTF-8');
 }
 
-include '../model/gestion_permissions.php';
+include_once '../model/gestion_permissions.php';
 redirect_groupe($groupe);
 $ecriture = ecriture_permissions($_SESSION['id']);
 if (!$ecriture) {
@@ -114,7 +114,7 @@ if (!empty($_POST['mail'])) {
     $mail = '';
 }
 
-include 'connexion_pdo.php';
+include_once 'connexion_pdo.php';
 global $db;
 
 $id_groupe = $db->prepare("SELECT id FROM groupe WHERE nom = :groupe");
