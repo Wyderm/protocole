@@ -25,7 +25,7 @@ $objet_mail = filter_input(INPUT_POST, 'objet');
 $objet_mail = strip_tags($objet_mail);
 $objet_mail = htmlspecialchars($objet_mail, ENT_QUOTES, 'UTF-8');
 
-include 'gestion_permissions.php';
+include_once 'gestion_permissions.php';
 redirect_groupe($groupe);
 
 if (isset($_POST['personnes']) && is_array($_POST['personnes'])) {
@@ -34,7 +34,7 @@ if (isset($_POST['personnes']) && is_array($_POST['personnes'])) {
     header("Location: hub_admin.php");
 }
 
-include 'connexion_pdo.php';
+include_once 'connexion_pdo.php';
 global $db;
 
 $stmt = $db->prepare("SELECT * FROM personne WHERE id = :id");
@@ -46,7 +46,7 @@ foreach ($personnes as $personne) {
     }
 }
 
-$mail = require __DIR__ . "/mailer.php";
+$mail = require_once __DIR__ . "/mailer.php";
 
 $mail_erreur = [];
 
