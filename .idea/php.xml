@@ -23,7 +23,9 @@
       <path value="$PROJECT_DIR$/vendor/phpoffice/phpword" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.1">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
   <component name="PhpStan">
     <PhpStan_settings>
       <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="7e99bfac-09a0-4028-a83b-f29ab5c94090" timeout="60000" />

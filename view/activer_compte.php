@@ -9,7 +9,7 @@
 <?php
 if (!isset($_GET['token'])) {
     echo "<h1>Erreur : aucun token trouvé.</h1>";
-    echo "<a href='connexion.php'>Retour à la page de connexion</a>";
+    echo "<a href='../../../conges/view/connexion.php'>Retour à la page de connexion</a>";
     exit();
 }
 $token = filter_input(1, 'token');

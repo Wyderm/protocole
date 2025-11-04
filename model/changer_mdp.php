@@ -14,7 +14,7 @@ if (!empty($_POST['token'])) {
 }
 else {
     echo "<h1>Token invalide, veuillez réessayer.</h1>";
-    echo "<button onclick=\"window.location.href='../view/connexion.php'\">Connexion</button>";
+    echo ">Connexion</button>";
     exit();
 }
 
@@ -25,12 +25,12 @@ $stmt->execute(array(
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($user === false) {
     echo "<h1>Token introuvable, veuillez réessayer.</h1>";
-    echo "<button onclick=\"window.location.href='../view/connexion.php'\">Connexion</button>";
+    echo ">Connexion</button>";
     exit();
 }
 if (strtotime($user['reset_token_expiration']) < time()) {
     echo "<h1>Le lien de réinitialisation a expiré, veuillez demander un nouveau lien.</h1>";
-    echo "<button onclick=\"window.location.href='../view/connexion.php'\">Connexion</button>";
+    echo ">Connexion</button>";
     exit();
 }
 
@@ -67,8 +67,8 @@ $stmt->execute(array(
 ));
 if ($stmt->rowCount() > 0) {
     echo "<h1>Mot de passe réinitialisé avec succès.</h1>";
-    echo "<button onclick=\"window.location.href='../view/connexion.php'\">Se connecter</button>";
+    echo ">Se connecter</button>";
 } else {
     echo "<h1>Erreur lors de la réinitialisation du mot de passe.</h1>";
-    echo "<button onclick=\"window.location.href='../view/connexion.php'\">Connexion</button>";
+    echo ">Connexion</button>";
 }

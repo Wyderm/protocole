@@ -15,6 +15,7 @@ if (isset($_GET['erreurs'])) {
     $mail_erreur = json_decode(urldecode($_GET['erreurs']), true);
 } else {
     header('Location: hub_admin.php');
+    exit();
 }
 
 ?>
@@ -27,7 +28,7 @@ if (isset($_GET['erreurs'])) {
     <link rel="stylesheet" href="style/style.css">
 </head>
 <?php
-include 'nav_bar.html';
+include_once 'nav_bar.html';
 ?>
 <body>
 <h1>Adresses email invalides</h1>
@@ -36,7 +37,7 @@ include 'nav_bar.html';
 echo "<p>Les adresses suivantes sont invalides :</p>";
 echo "<ul>";
 foreach ($mail_erreur as $email) {
-    echo "<li>" . $email . "</li>";
+    echo "<li>" . htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . "</li>";
 }
 echo "</ul>";
 ?>
