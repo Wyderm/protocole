@@ -1,5 +1,5 @@
 <?php
-include "connexion_pdo.php";
+include_once "connexion_pdo.php";
 global $db;
 session_start();
 session_regenerate_id();
