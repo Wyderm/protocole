@@ -1,7 +1,7 @@
 <?php
-include 'connexion_pdo.php';
+include_once 'connexion_pdo.php';
 
-function redirect_groupe($groupe): void
+function redirectGroupe($groupe): void
 {
     if (!isset($_SESSION)) {
         session_start();
@@ -15,9 +15,9 @@ function redirect_groupe($groupe): void
 
     $id = $_SESSION['id'];
 
-    $stmt = $db->prepare("SELECT g.nom 
-                          FROM utilisateur_groupe 
-                          JOIN groupe g ON utilisateur_groupe.id_groupe = g.id 
+    $stmt = $db->prepare("SELECT g.nom
+                          FROM utilisateur_groupe
+                          JOIN groupe g ON utilisateur_groupe.id_groupe = g.id
                           WHERE id_utilisateur = :id");
     $stmt->execute(array(
         'id' => $id
@@ -30,7 +30,7 @@ function redirect_groupe($groupe): void
     }
 }
 
-function redirect_personne($id_personne): void
+function redirectPersonne($id_personne): void
 {
     if (!isset($_SESSION)) {
         session_start();
@@ -63,7 +63,7 @@ function redirect_personne($id_personne): void
     }
 }
 
-function ecriture_permissions($id_compte): bool
+function ecriturePermissions($id_compte): bool
 {
     global $db;
 
