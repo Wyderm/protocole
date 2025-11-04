@@ -34,7 +34,7 @@ global $personne, $sous_categories;
     <form action="../model/supprimer_souscategorie.php" method="post">
         <h2>Supprimer</h2>
         <label for="sous_categorie">Sous-catégories :</label>
-        <select name="sous_categorie" id="sous_categorie">
+        <select name="sous_categorie2" id="sous_categorie2">
             <?php foreach ($sous_categories as $category): ?>
                 <option value="<?php echo htmlspecialchars($category['nom']); ?>"><?php echo htmlspecialchars($category['nom']); ?></option>
             <?php endforeach; ?>
